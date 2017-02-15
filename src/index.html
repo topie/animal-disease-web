@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>animal-disease</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- jQuery UI -->
+    <link href="cdn/vendors/jquery-ui/jquery-ui.min.css" rel="stylesheet" media="screen">
+    <!-- Bootstrap -->
+    <link href="cdn/vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="cdn/vendors/metisMenu/metisMenu.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="cdn/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link href="cdn/vendors/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css">
+
+    <!-- styles -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
+    <link href="css/tiles.css" rel="stylesheet">
+
+    <link href="cdn/vendors/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" media="screen">
+    <link href="cdn/vendors/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" media="screen">
+    <link href="cdn/vendors/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" media="screen">
+    <link href="cdn/vendors/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet" media="screen">
+    <link href="cdn/vendors/jquery-file-upload/css/jquery.fileupload-ui.css" rel="stylesheet" media="screen">
+    <link href="cdn/vendors/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" media="screen">
+    <link href="cdn/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="cdn/vendors/kindeditor/themes/default/default.css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="cdn/vendors/html5shiv/dist/html5shiv.js"></script>
+    <script src="cdn/vendors/respond/dest/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="wrapper">
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="ldhd-bg container-fluid">
+            <a href="./index.html">
+                <div class="head-link"></div>
+            </a>
+        </div><!-- /.container-fluid -->
+    </nav>
+    <!-- Second Nav -->
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- Brand -->
+                <a class="navbar-brand" href="./index.html">后台管理系统</a>
+            </div>
+
+            <div class="collapse navbar-collapse animated fadeIn">
+
+                <ul role="vertical" class="nav navbar-nav animated fadeIn" id="vertical-menu">
+                </ul>
+
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                                class="glyphicon glyphicon-user"></i> 账户 <span class="caret"></span></a>
+                        <ul class="dropdown-menu animated flipInX" role="menu">
+                            <li><a id="side-vertical" href="javascript:void(0);"><i class="fa fa-gear"></i> 切换横竖屏</a>
+                            </li>
+                            <li><a id="logout" href="javascript:void(0);">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+
+        <div role="side" class="navbar-default sidebar">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+
+
+    <div class="page-wrapper side-page">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header" id="main-title"></h3>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+
+        <!-- .row -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- /.panel -->
+                <div class="panel panel-default" style="border-radius:0">
+                    <!-- /.panel-heading -->
+                    <div id="main-body" class="panel-body">
+
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /#page-wrapper -->
+</div>
+<footer>
+    <div class="container">
+        <div class="copy text-center">
+            版权所有 <a href='http://www.orange.com'>orange.com</a>
+        </div>
+    </div>
+</footer>
+<!-- Custom Theme JavaScript -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="cdn/vendors/jquery/dist/jquery.min.js"></script>
+<script src="cdn/vendors/bootstrap/js/bootstrap.min.js"></script>
+<script src="cdn/vendors/jquery-ui/jquery-ui.min.js"></script>
+<script src="cdn/vendors/metisMenu/metisMenu.js"></script>
+<script src="cdn/vendors/jquery.tmpl.min.js"></script>
+<script src="cdn/vendors/moment.js"></script>
+<script src="cdn/vendors/ajaxfileupload.js"></script>
+<script src="cdn/vendors/jquery.cookie/jquery.cookie.js"></script>
+<script src="cdn/vendors/bootbox.js"></script>
+<script src="cdn/vendors/jquery.validate.min.js"></script>
+<script src="cdn/vendors/additional-methods.min.js"></script>
+<script src="cdn/vendors/block-ui/jquery.blockUI.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="cdn/vendors/datatables/js/jquery.dataTables.min.js"></script>
+<script src="cdn/vendors/bootstrap-modal/js/bootstrap-modalmanager.js"></script>
+<script src="cdn/vendors/bootstrap-modal/js/bootstrap-modal.js"></script>
+<script src="cdn/vendors/bootstrap-fileinput/bootstrap-fileinput.js"></script>
+<script src="cdn/vendors/jquery-file-upload/js/jquery.fileupload.js"></script>
+<script src="cdn/vendors/jquery-file-upload/js/jquery.fileupload-jquery-ui.js"></script>
+<script src="cdn/vendors/zTree/js/jquery.ztree.core-3.5.min.js"></script>
+<script src="cdn/vendors/zTree/js/jquery.ztree.excheck-3.5.min.js"></script>
+<script src="cdn/vendors/zTree/js/jquery.ztree.exedit-3.5.min.js"></script>
+<script src="cdn/vendors/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="cdn/vendors/kindeditor/lang/zh_CN.js"></script>
+<script src="cdn/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="cdn/vendors/bootstrap-contextmenu/bootstrap-contextmenu.js"></script>
+
+<script src="js/style.js"></script>
+<script src="js/app.js"></script>
+<script src="js/orange-plugins/orange-modal.js"></script>
+<script src="js/orange-plugins/orange-grid.js"></script>
+<script src="js/orange-plugins/orange-form.js"></script>
+<script src="js/orange-plugins/orange-file-managers.js"></script>
+<script src="js/function.js"></script>
+<script src="js/index.js"></script>
+<script src="js/sys/user.js"></script>
+<script src="js/sys/role.js"></script>
+<script src="js/sys/function.js"></script>
+<script type="text/javascript">
+    bootbox.setLocale("zh_CN");
+    $("#logout").on("click", function () {
+        $.ajax(
+            {
+                type: 'GET',
+                url: App.href + "/api/logout",
+                contentType: "application/json",
+                beforeSend: function (request) {
+                    request.setRequestHeader("X-Auth-Token", App.token);
+                },
+                dataType: "json",
+                success: function (result) {
+                    if (result.code == 200) {
+                        $.cookie('tc_t', null);
+                        window.location.href = App.href + "/login.html";
+                    } else {
+                        alert(result.message);
+                    }
+                }
+            }
+        );
+    });
+</script>
+</body>
+</html>
