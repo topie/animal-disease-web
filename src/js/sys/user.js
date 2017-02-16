@@ -412,7 +412,7 @@
                                 expandAll: true,
                                 autoParam: ["id", "name", "pId"],
                                 chkStyle: "checkbox",
-                                detail: "如何设置角色?<a target='_blank' href='#!/api/sys/role/pageList'>点击设置</a>",
+                                detail: "如何设置角色?<a target='_blank' href='?u=/api/sys/role/pageList'>点击设置</a>",
                                 rule: {
                                     required: true
                                 },

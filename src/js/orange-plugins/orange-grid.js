@@ -829,7 +829,7 @@
                 var num = (that._pageNum - 1) * that._pageSize + i + 1;
                 var ele = $('<dl>' +
                     '<dt>' +
-                    '<img role="img" src="../../themes/sb-admin/img/128.png" alt="Product image" width="128" height="128" />' +
+                    '<img role="img" src="../../cdn/img/128.png" alt="Product image" width="128" height="128" />' +
                     '<strong><span role="cb"></span></strong>' +
                     '<a href="javacript:void(0);" role="hd"></a>' +
                     '</dt>' +

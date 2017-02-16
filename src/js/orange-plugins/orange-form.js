@@ -656,6 +656,9 @@
                             "attribute_": (radio.attribute === undefined ? ""
                                 : radio.attribute)
                         });
+                        if (!data.inline) {
+                            rd.css("margin-left", "20px");
+                        }
                         ele.append(rd);
                     });
                 }
@@ -982,7 +985,7 @@
                 });
                 var chkboxType = data.chkboxType === undefined ? {"Y": "p", "N": "p"} : data.chkboxType;
                 var beforeCheck = data.beforeCheck === undefined ? function () {
-                } : data.beforeCheck;
+                    } : data.beforeCheck;
                 var setting = {
                     check: {
                         enable: (data.checkable === undefined ? true : data.checkable),
