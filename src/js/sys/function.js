@@ -94,63 +94,78 @@
                             }
                         }],
                         buttonsAlign: "center",
-                        items: [{
-                            type: 'hidden',
-                            name: 'id',
-                            id: 'id'
-                        }, {
-                            type: 'tree',//类型
-                            name: 'parentId',
-                            id: 'parentId',//id
-                            label: '父菜单',//左边label
-                            url: App.href + "/api/sys/function/treeNodes?animal_disease_token=" + App.token,
-                            expandAll: true,
-                            autoParam: ["id", "name", "pId"],
-                            chkStyle: "radio"
-                        }, {
-                            type: 'text',//类型
-                            name: 'functionName',//name
-                            id: 'functionName',//id
-                            label: '菜单名',//左边label
-                            cls: 'input-large',
-                            rule: {
-                                required: true
-                            },
-                            message: {
-                                required: "请输入菜单名"
-                            }
-                        }, {
-                            type: 'text',//类型
-                            name: 'action',//name
-                            id: 'action',//id
-                            label: '菜单路径',//左边label
-                            cls: 'input-large',
-                            rule: {
-                                required: true
-                            },
-                            message: {
-                                required: "菜单路径"
-                            }
-                        }, {
-                            type: 'radioGroup',
-                            name: 'display',
-                            id: 'display',
-                            label: '是否显示',
-                            inline: true,
-                            items: [{
-                                value: true,
-                                text: '显示'
+                        items: [
+                            {
+                                type: 'hidden',
+                                name: 'id',
+                                id: 'id'
                             }, {
-                                value: false,
-                                text: '隐藏'
-                            }],
-                            rule: {
-                                required: true
-                            },
-                            message: {
-                                required: "请选择"
+                                type: 'tree',//类型
+                                name: 'parentId',
+                                id: 'parentId',//id
+                                label: '父菜单',//左边label
+                                url: App.href + "/api/sys/function/treeNodes?animal_disease_token=" + App.token,
+                                expandAll: true,
+                                autoParam: ["id", "name", "pId"],
+                                chkStyle: "radio"
+                            }, {
+                                type: 'text',//类型
+                                name: 'functionName',//name
+                                id: 'functionName',//id
+                                label: '菜单名',//左边label
+                                cls: 'input-large',
+                                rule: {
+                                    required: true
+                                },
+                                message: {
+                                    required: "请输入菜单名"
+                                }
+                            }, {
+                                type: 'text',//类型
+                                name: 'icon',//name
+                                id: 'icon',//id
+                                label: '图标',//左边label
+                                cls: 'input-large',
+                                value: 'glyphicon glyphicon-list'
+                            }, {
+                                type: 'text',//类型
+                                name: 'action',//name
+                                id: 'action',//id
+                                label: '菜单路径',//左边label
+                                cls: 'input-large',
+                                rule: {
+                                    required: true
+                                },
+                                message: {
+                                    required: "菜单路径"
+                                }
+                            }, {
+                                type: 'radioGroup',
+                                name: 'display',
+                                id: 'display',
+                                label: '是否显示',
+                                inline: true,
+                                items: [{
+                                    value: true,
+                                    text: '显示'
+                                }, {
+                                    value: false,
+                                    text: '隐藏'
+                                }],
+                                rule: {
+                                    required: true
+                                },
+                                message: {
+                                    required: "请选择"
+                                }
+                            }, {
+                                type: 'text',//类型
+                                name: 'functionDesc',//name
+                                id: 'functionDesc',//id
+                                label: '排序号',//左边label
+                                cls: 'input-large'
                             }
-                        }]
+                        ]
                     };
                     var form = modal.$body.orangeForm(formOpts);
                     form.loadRemote(App.href + "/api/sys/function/load/" + data.id);
@@ -160,7 +175,7 @@
                 text: "删除",
                 cls: "btn-danger btn-sm",
                 handle: function (index, data) {
-                    bootbox.confirm("确定该操作?", function(result) {
+                    bootbox.confirm("确定该操作?", function (result) {
                         if (result) {
                             var requestUrl = App.href + "/api/sys/function/delete";
                             $.ajax({
@@ -226,59 +241,74 @@
                                 }
                             }],
                             buttonsAlign: "center",
-                            items: [{
-                                type: 'tree',
-                                name: 'parentId',
-                                id: 'parentId',
-                                label: '父菜单',
-                                url: App.href + "/api/sys/function/treeNodes?animal_disease_token=" + App.token,
-                                expandAll: true,
-                                autoParam: ["id", "name", "pId"],
-                                chkStyle: "radio"
-                            }, {
-                                type: 'text',//类型
-                                name: 'functionName',//name
-                                id: 'functionName',//id
-                                label: '菜单名',//左边label
-                                cls: 'input-large',
-                                rule: {
-                                    required: true
-                                },
-                                message: {
-                                    required: "请输入菜单名"
-                                }
-                            }, {
-                                type: 'text',//类型
-                                name: 'action',//name
-                                id: 'action',//id
-                                label: '菜单路径',//左边label
-                                cls: 'input-large',
-                                rule: {
-                                    required: true
-                                },
-                                message: {
-                                    required: "菜单路径"
-                                }
-                            }, {
-                                type: 'radioGroup',
-                                name: 'display',
-                                id: 'display',
-                                label: '是否显示',
-                                inline: true,
-                                items: [{
-                                    value: true,
-                                    text: '显示'
+                            items: [
+                                {
+                                    type: 'tree',
+                                    name: 'parentId',
+                                    id: 'parentId',
+                                    label: '父菜单',
+                                    url: App.href + "/api/sys/function/treeNodes?animal_disease_token=" + App.token,
+                                    expandAll: true,
+                                    autoParam: ["id", "name", "pId"],
+                                    chkStyle: "radio"
                                 }, {
-                                    value: false,
-                                    text: '隐藏'
-                                }],
-                                rule: {
-                                    required: true
-                                },
-                                message: {
-                                    required: "请选择"
+                                    type: 'text',//类型
+                                    name: 'functionName',//name
+                                    id: 'functionName',//id
+                                    label: '菜单名',//左边label
+                                    cls: 'input-large',
+                                    rule: {
+                                        required: true
+                                    },
+                                    message: {
+                                        required: "请输入菜单名"
+                                    }
+                                }, {
+                                    type: 'text',//类型
+                                    name: 'icon',//name
+                                    id: 'icon',//id
+                                    label: '图标',//左边label
+                                    cls: 'input-large',
+                                    value: 'glyphicon glyphicon-list'
+                                }, {
+                                    type: 'text',//类型
+                                    name: 'action',//name
+                                    id: 'action',//id
+                                    label: '菜单路径',//左边label
+                                    cls: 'input-large',
+                                    rule: {
+                                        required: true
+                                    },
+                                    message: {
+                                        required: "菜单路径"
+                                    }
+                                }, {
+                                    type: 'radioGroup',
+                                    name: 'display',
+                                    id: 'display',
+                                    label: '是否显示',
+                                    inline: true,
+                                    items: [{
+                                        value: true,
+                                        text: '显示'
+                                    }, {
+                                        value: false,
+                                        text: '隐藏'
+                                    }],
+                                    rule: {
+                                        required: true
+                                    },
+                                    message: {
+                                        required: "请选择"
+                                    }
+                                }, {
+                                    type: 'text',//类型
+                                    name: 'functionDesc',//name
+                                    id: 'functionDesc',//id
+                                    label: '排序号',//左边label
+                                    cls: 'input-large'
                                 }
-                            }]
+                            ]
                         };
                         var form = modal.$body.orangeForm(formOpts);
                         modal.show();

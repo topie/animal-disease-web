@@ -29,7 +29,7 @@
             data: fields,
             success: function (result) {
                 if (result.code == 200) {
-                    $.cookie('tc_t', result.token, {expires: 7});
+                    $.cookie('animal_disease_tc_t', result.token, {expires: 7});
                     window.location.href = App.href;
                 } else {
                     alert(result.message);

@@ -64,7 +64,7 @@
                 ele += ('<li data-level="sub">'
                 + '<a data-url="' + m.action
                 + '" data-title="' + m.functionName
-                + '" href="javascript:void(0);"><i class="' + (m.icon === null ? "glyphicon glyphicon-list" : m.icon) + '"></i> '
+                + '" href="javascript:void(0);"><i class="' + (m.icon == null || m.icon == '' ? "glyphicon glyphicon-list" : m.icon) + '"></i> '
                 + m.functionName
                 + '</a>');
                 var sMenus = getSubMenu(menus, m.id);
@@ -83,7 +83,7 @@
                 ele += ('<li data-level="sub">'
                 + '<a data-url="' + m.action
                 + '" data-title="' + m.functionName
-                + '" href="javascript:void(0);"><i class="' + (m.icon === null ? "glyphicon glyphicon-list" : m.icon) + '"></i> '
+                + '" href="javascript:void(0);"><i class="' + (m.icon == null || m.icon == '' ? "glyphicon glyphicon-list" : m.icon) + '"></i> '
                 + m.functionName
                 + '</a>');
                 ele += '</li>';
@@ -100,7 +100,7 @@
                 ele += ('<li data-level="sub">'
                 + '<a data-url="' + m.action
                 + '" data-title="' + m.functionName
-                + '" href="javascript:void(0);"><i class="' + (m.icon === null ? "glyphicon glyphicon-list" : m.icon) + '"></i> '
+                + '" href="javascript:void(0);"><i class="' + (m.icon == null || m.icon == '' ? "glyphicon glyphicon-list" : m.icon) + '"></i> '
                 + m.functionName
                 + '</a>');
                 ele += '</li>';
@@ -136,7 +136,7 @@
                                     '<li data-level="top">'
                                     + '<a data-url="' + m.action
                                     + '" data-title="' + m.functionName
-                                    + '" href="javascript:void(0);"><i class="' + (m.icon === null ? "glyphicon glyphicon-list" : m.icon) + '"></i> '
+                                    + '" href="javascript:void(0);"><i class="' + (m.icon == null || m.icon == '' ? "glyphicon glyphicon-list" : m.icon) + '"></i> '
                                     + m.functionName
                                     + '</a>';
                                 var subMenus = getSubMenu(menus, m.id);
