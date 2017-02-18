@@ -111,4 +111,8 @@
         return $("#main-body");
     };
 
+    App.redirectLogin = function () {
+        window.location.href = '../login.html';
+    }
+
 })(jQuery, window, document);

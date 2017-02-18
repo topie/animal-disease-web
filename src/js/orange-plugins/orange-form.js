@@ -710,14 +710,14 @@
                         "value_": ""
                     });
                 }
-                var ele = $.tmpl(dateTmpl, {
-                    "id_": (data.id === undefined ? data.name : data.id),
-                    "name_": data.name,
-                    "cls_": data.cls === undefined ? "" : data.cls,
-                    "value_": (data.value === undefined ? moment().format('YYYY-MM-DD HH:mm:ss') : data.value)
-                });
-                config = (data.config === undefined ? {} : data.config);
+                var config = (data.config == undefined ? {} : data.config);
                 var option = $.extend(true, dateDefaults, config);
+                var ele = $.tmpl(dateTmpl, {
+                    "id_": (data.id == undefined ? data.name : data.id),
+                    "name_": data.name,
+                    "cls_": data.cls == undefined ? "" : data.cls,
+                    "value_": (data.value == undefined ? moment().format(option.locale.format) : data.value)
+                });
                 if (data.callback !== undefined) {
                     ele.find('[role="date-input"]').daterangepicker(option, data.callback);
                 } else {

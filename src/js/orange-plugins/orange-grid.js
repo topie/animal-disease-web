@@ -155,7 +155,7 @@
         alert: function (alertText) {
             this._alert(alertText, "danger", 5);
         },
-        _alert: function (alertText, type, seconds) {
+        _alert: function (alertText, type, seconds, cb) {
             if (type == undefined) {
                 type = "danger";
             }
@@ -169,6 +169,9 @@
             this.$element.prepend(alertDiv);
             alertDiv.delay(seconds * 1000).fadeOut();
             App.scrollTo(alertDiv, -200);
+            if (cb != undefined) {
+                cb();
+            }
         },
         // 设置变量
         _setVariable: function (element, options) {
@@ -296,6 +299,8 @@
                     if (data.code === 200) {
                         that._setData(data.data);
                         that._init();
+                    } else if (data.code === 401) {
+                        that._alert(data.message + ";请重新登录！", App.redirectLogin);
                     } else {
                         that._alert(data.message);
                     }

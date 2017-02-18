@@ -35,7 +35,7 @@
             columns: [
                 {
                     title: "id",
-                    field: "id",
+                    field: "userId",
                     width: "5%"
                 }, {
                     title: "真实姓名",
@@ -43,7 +43,7 @@
                 }, {
                     title: "性别",
                     field: "gender",
-                    format: function (data) {
+                    format: function (i, data) {
                         if (data.gender == 0) {
                             return '未选择';
                         } else {
@@ -98,8 +98,8 @@
                             items: [
                                 {
                                     type: 'hidden',
-                                    name: 'id',
-                                    id: 'id'
+                                    name: 'userId',
+                                    id: 'userId'
                                 }, {
                                     type: 'text',
                                     name: 'realName',
@@ -139,11 +139,26 @@
                                     id: 'leader',
                                     label: '主管领导',
                                     cls: 'input-large'
+                                }, {
+                                    type: 'tree',//类型
+                                    name: 'orgId',
+                                    id: 'orgId',//id
+                                    label: '组织机构',//左边label
+                                    url: App.href + "/api/animalDisease/orgInfo/treeNodes?animal_disease_token=" + App.token,
+                                    expandAll: true,
+                                    autoParam: ["id", "name", "pId"],
+                                    chkStyle: "radio",
+                                    rule: {
+                                        required: true
+                                    },
+                                    message: {
+                                        required: "请选择一个机构"
+                                    }
                                 }
                             ]
                         };
                         var form = modal.$body.orangeForm(formOpts)
-                        form.loadRemote(App.href + "/api/animalDisease/userInfo/load/" + data.id)
+                        form.loadRemote(App.href + "/api/animalDisease/userInfo/load/" + data.userId)
                         modal.show()
                     }
                 }, {
@@ -160,7 +175,7 @@
                                     },
                                     dataType: "json",
                                     data: {
-                                        id: data.id
+                                        id: data.userId
                                     },
                                     url: requestUrl,
                                     success: function (data) {
@@ -214,6 +229,62 @@
                             buttonsAlign: "center",
                             items: [
                                 {
+                                    type: 'text',//类型
+                                    name: 'loginName',//name
+                                    id: 'loginName',//id
+                                    label: '登录名',//左边label
+                                    cls: 'input-large',
+                                    rule: {
+                                        required: true,
+                                        remote: {
+                                            type: "post",
+                                            url: App.href + "/api/noneAuth/unique",
+                                            data: {
+                                                loginName: function () {
+                                                    return $("#loginName").val();
+                                                }
+                                            },
+                                            dataType: "json",
+                                            dataFilter: function (data, type) {
+                                                return data;
+                                            }
+                                        }
+                                    },
+                                    message: {//对应验证提示信息
+                                        required: "请输入登录名",
+                                        remote: "登录名被占用"
+                                    }
+                                }, {
+                                    type: 'password',//类型
+                                    name: 'password',//name
+                                    id: 'password',//id
+                                    label: '密码',//左边label
+                                    cls: 'input-medium',
+                                    rule: {
+                                        required: true,
+                                        minlength: 4,
+                                        maxlength: 64
+                                    },
+                                    message: {
+                                        required: "请输入密码",
+                                        minlength: "至少{0}位",
+                                        maxlength: "做多{0}位"
+                                    }
+                                }, {
+                                    type: 'password',//类型
+                                    name: 'password2',//name
+                                    id: 'password2',//id
+                                    label: '确认密码',//左边label
+                                    cls: 'input-medium',
+                                    rule: {
+                                        required: true,
+                                        equalTo: "#password"
+                                    },
+                                    message: {
+                                        required: "请输入确认密码密码",
+                                        equalTo: "与密码不一致"
+                                    }
+                                }, {
                                     type: 'text',
                                     name: 'realName',
                                     id: 'realName',
@@ -252,6 +323,21 @@
                                     id: 'leader',
                                     label: '主管领导',
                                     cls: 'input-large'
+                                }, {
+                                    type: 'tree',//类型
+                                    name: 'orgId',
+                                    id: 'orgId',//id
+                                    label: '组织机构',//左边label
+                                    url: App.href + "/api/animalDisease/orgInfo/treeNodes?animal_disease_token=" + App.token,
+                                    expandAll: true,
+                                    autoParam: ["id", "name", "pId"],
+                                    chkStyle: "radio",
+                                    rule: {
+                                        required: true
+                                    },
+                                    message: {
+                                        required: "请选择一个机构"
+                                    }
                                 }
                             ]
                         };
