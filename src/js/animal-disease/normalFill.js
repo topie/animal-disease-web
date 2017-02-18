@@ -4,14 +4,14 @@
 
 (function ($, window, document, undefined) {
     var mapping = {
-        "/api/animalDisease/reportFill/pageList": "reportFill"
+        "/api/animalDisease/normalFill/pageList": "normalFill"
     };
     App.requestMapping = $.extend({}, window.App.requestMapping, mapping);
-    App.reportFill = {
+    App.normalFill = {
         page: function (title) {
             App.content.empty()
             App.title(title)
-            var content = $('<div class="panel-body" id="report_fill_grid"></div>')
+            var content = $('<div class="panel-body" id="normal_fill_grid"></div>')
             App.content.append(content)
             initEvents()
         }
@@ -19,7 +19,7 @@
     var initEvents = function () {
         var grid = {}
         var options = {
-            url: App.href + "/api/animalDisease/reportFill/pageList",
+            url: App.href + "/api/animalDisease/normalFill/pageList",
             beforeSend: function (request) {
                 request.setRequestHeader("X-Auth-Token", App.token);
             },
@@ -59,15 +59,15 @@
                     cls: "btn-primary btn-sm",
                     handle: function (index, data) {
                         var modal = $.orangeModal({
-                            id: "report_fill_edit_modal",
+                            id: "normal_fill_edit_modal",
                             title: "编辑",
                             destroy: true
                         })
                         var formOpts = {
-                            id: "report_fill_form",//表单id
-                            name: "report_fill_form",//表单名
+                            id: "normal_fill_form",//表单id
+                            name: "normal_fill_form",//表单名
                             method: "POST",//表单method
-                            action: App.href + "/api/animalDisease/reportFill/update",//表单action
+                            action: App.href + "/api/animalDisease/normalFill/update",//表单action
                             ajaxSubmit: true,//是否使用ajax提交表单
                             beforeSend: function (request) {
                                 request.setRequestHeader("X-Auth-Token", App.token)
@@ -148,7 +148,7 @@
                             ]
                         };
                         var form = modal.$body.orangeForm(formOpts)
-                        form.loadRemote(App.href + "/api/animalDisease/reportFill/load/" + data.id)
+                        form.loadRemote(App.href + "/api/animalDisease/normalFill/load/" + data.id)
                         modal.show()
                     }
                 }, {
@@ -157,7 +157,7 @@
                     handle: function (index, data) {
                         bootbox.confirm("确定该操作?", function (result) {
                             if (result) {
-                                var requestUrl = App.href + "/api/animalDisease/reportFill/delete";
+                                var requestUrl = App.href + "/api/animalDisease/normalFill/delete";
                                 $.ajax({
                                     type: "POST",
                                     beforeSend: function (request) {
@@ -190,7 +190,7 @@
                     icon: "fa fa-cubes",
                     handle: function (grid) {
                         var modal = $.orangeModal({
-                            id: "report_fill_add_modal",
+                            id: "normal_fill_add_modal",
                             title: "添加",
                             destroy: true
                         })
@@ -198,7 +198,7 @@
                             id: "add_report_form",
                             name: "add_report_form",
                             method: "POST",
-                            action: App.href + "/api/animalDisease/reportFill/insert",//表单action
+                            action: App.href + "/api/animalDisease/normalFill/insert",//表单action
                             ajaxSubmit: true,//是否使用ajax提交表单
                             rowEleNum: 1,
                             ajaxSuccess: function () {
@@ -288,6 +288,6 @@
                 }]
             }
         }
-        grid = window.App.content.find("#report_fill_grid").orangeGrid(options)
+        grid = window.App.content.find("#normal_fill_grid").orangeGrid(options)
     }
 })(jQuery, window, document)

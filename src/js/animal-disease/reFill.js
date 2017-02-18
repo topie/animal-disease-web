@@ -98,7 +98,7 @@
                                     name: 'fillId',
                                     id: 'fillId',//id
                                     label: '填报项',//左边label
-                                    url: App.href + "/api/animalDisease/reportFill/treeNodes?animal_disease_token=" + App.token,
+                                    url: App.href + "/api/animalDisease/normalFill/treeNodes?animal_disease_token=" + App.token,
                                     expandAll: true,
                                     autoParam: ["id", "name", "pId"],
                                     chkStyle: "radio",
@@ -226,7 +226,7 @@
                                     name: 'fillId',
                                     id: 'fillId',//id
                                     label: '填报项',//左边label
-                                    url: App.href + "/api/animalDisease/reportFill/treeNodes?animal_disease_token=" + App.token,
+                                    url: App.href + "/api/animalDisease/normalFill/treeNodes?animal_disease_token=" + App.token,
                                     expandAll: true,
                                     autoParam: ["id", "name", "pId"],
                                     chkStyle: "radio",
