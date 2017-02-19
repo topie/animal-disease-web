@@ -66,6 +66,13 @@
                             buttons: [
                                 {
                                     type: 'button',
+                                    text: '保存到本地',
+                                    cls: "btn-info",
+                                    handle: function () {
+                                        App.download("/api/animalDisease/reportSummary/download/" + data.id)
+                                    }
+                                }, {
+                                    type: 'button',
                                     text: '关闭',
                                     cls: "btn-default",
                                     handle: function () {
@@ -84,7 +91,6 @@
                             url: requestUrl,
                             success: function (data) {
                                 if (data.code === 200) {
-                                    console.info(data);
                                     modal.content(data.data.html);
                                 } else {
                                     alert(data.message)
