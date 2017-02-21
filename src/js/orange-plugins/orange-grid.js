@@ -669,6 +669,9 @@
                                 ele.find('span').on("click", function () {
                                     $(this).prev().click();
                                 });
+                            } else if (item.type == "html") {
+                                var ele = item.eleHandle();
+                                itemDiv.find(".form-group").append(ele);
                             }
                             searchFormRow.find(".row").append(itemDiv);
                         });

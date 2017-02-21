@@ -4,7 +4,7 @@
 
 (function ($, window, document, undefined) {
     var mapping = {
-        "/api/animalDisease/orgInfo/pageList": "orgInfo"
+        "/api/animal/orgInfo/pageList": "orgInfo"
     };
     App.requestMapping = $.extend({}, window.App.requestMapping, mapping);
     App.orgInfo = {
@@ -19,7 +19,7 @@
     var initEvents = function () {
         var grid = {}
         var options = {
-            url: App.href + "/api/animalDisease/orgInfo/pageList",
+            url: App.href + "/api/animal/orgInfo/pageList",
             beforeSend: function (request) {
                 request.setRequestHeader("X-Auth-Token", App.token);
             },
@@ -34,15 +34,11 @@
             pageSelect: [2, 15, 30, 50],
             columns: [
                 {
-                    title: "ID",
-                    field: "orgId",
-                    width: "5%"
-                }, {
                     title: "机构名称",
                     field: "orgName"
                 }, {
-                    title: '区划编码',
-                    field: 'orgCode'
+                    title: '区域编码',
+                    field: 'regionCode'
                 }
             ],
             actionColumnText: "操作",//操作列文本
@@ -61,7 +57,7 @@
                             id: "org_info_form",
                             name: "org_info_form",
                             method: "POST",
-                            action: App.href + "/api/animalDisease/orgInfo/update",
+                            action: App.href + "/api/animal/orgInfo/update",
                             ajaxSubmit: true,//是否使用ajax提交表单
                             beforeSend: function (request) {
                                 request.setRequestHeader("X-Auth-Token", App.token)
@@ -101,21 +97,21 @@
                                     }
                                 }, {
                                     type: 'text',
-                                    name: 'orgCode',
-                                    id: 'orgCode',
-                                    label: '区划编码',
+                                    name: 'regionCode',
+                                    id: 'regionCode',
+                                    label: '区域编码',
                                     cls: 'input-large',
                                     rule: {
                                         required: true
                                     },
                                     message: {
-                                        required: "请输入机构名称"
+                                        required: "请输入区域编码"
                                     }
                                 }
                             ]
                         };
                         var form = modal.$body.orangeForm(formOpts)
-                        form.loadRemote(App.href + "/api/animalDisease/orgInfo/load/" + data.orgId)
+                        form.loadRemote(App.href + "/api/animal/orgInfo/load/" + data.orgId)
                         modal.show()
                     }
                 }, {
@@ -124,7 +120,7 @@
                     handle: function (index, data) {
                         bootbox.confirm("确定该操作?", function (result) {
                             if (result) {
-                                var requestUrl = App.href + "/api/animalDisease/orgInfo/delete";
+                                var requestUrl = App.href + "/api/animal/orgInfo/delete";
                                 $.ajax({
                                     type: "POST",
                                     beforeSend: function (request) {
@@ -165,7 +161,7 @@
                             id: "add_org_form",
                             name: "add_org_form",
                             method: "POST",
-                            action: App.href + "/api/animalDisease/orgInfo/insert",
+                            action: App.href + "/api/animal/orgInfo/insert",
                             ajaxSubmit: true,//是否使用ajax提交表单
                             rowEleNum: 1,
                             ajaxSuccess: function () {
@@ -199,15 +195,15 @@
                                     }
                                 }, {
                                     type: 'text',
-                                    name: 'orgCode',
-                                    id: 'orgCode',
-                                    label: '区划编码',
+                                    name: 'regionCode',
+                                    id: 'regionCode',
+                                    label: '区域编码',
                                     cls: 'input-large',
                                     rule: {
                                         required: true
                                     },
                                     message: {
-                                        required: "请输入机构名称"
+                                        required: "请输入区域编码"
                                     }
                                 }
                             ]

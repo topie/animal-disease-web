@@ -4,7 +4,7 @@
 
 (function ($, window, document, undefined) {
     var mapping = {
-        "/api/animalDisease/userInfo/pageList": "userInfo"
+        "/api/animal/userInfo/pageList": "userInfo"
     };
     App.requestMapping = $.extend({}, window.App.requestMapping, mapping);
     App.userInfo = {
@@ -19,7 +19,7 @@
     var initEvents = function () {
         var grid = {}
         var options = {
-            url: App.href + "/api/animalDisease/userInfo/pageList",
+            url: App.href + "/api/animal/userInfo/pageList",
             beforeSend: function (request) {
                 request.setRequestHeader("X-Auth-Token", App.token);
             },
@@ -34,27 +34,19 @@
             pageSelect: [2, 15, 30, 50],
             columns: [
                 {
-                    title: "id",
-                    field: "userId",
-                    width: "5%"
+                    title: "登录名",
+                    field: "loginName"
                 }, {
                     title: "真实姓名",
                     field: "realName"
                 }, {
                     title: "性别",
-                    field: "gender",
-                    format: function (i, data) {
-                        if (data.gender == 0) {
-                            return '未选择';
-                        } else {
-                            return data.gender == 1 ? '男' : '女'
-                        }
-                    }
+                    field: "gender"
                 }, {
                     field: 'jobTitle',
                     title: '职称'
                 }, {
-                    field: 'leader',
+                    field: 'leaderName',
                     title: '主管领导'
                 }
             ],
@@ -74,7 +66,7 @@
                             id: "user_info_form",//表单id
                             name: "user_info_form",//表单名
                             method: "POST",//表单method
-                            action: App.href + "/api/animalDisease/userInfo/update",//表单action
+                            action: App.href + "/api/animal/userInfo/update",//表单action
                             ajaxSubmit: true,//是否使用ajax提交表单
                             beforeSend: function (request) {
                                 request.setRequestHeader("X-Auth-Token", App.token)
@@ -101,6 +93,10 @@
                                     name: 'userId',
                                     id: 'userId'
                                 }, {
+                                    type: 'hidden',
+                                    name: 'platformId',
+                                    id: 'platformId'
+                                }, {
                                     type: 'text',
                                     name: 'realName',
                                     id: 'realName',
@@ -113,20 +109,31 @@
                                         required: "请输入真实姓名"
                                     }
                                 }, {
-                                    type: 'radioGroup',
+                                    type: 'text',
                                     name: 'gender',
                                     id: 'gender',
                                     label: '性别',
-                                    inline: true,
-                                    items: [
-                                        {
-                                            value: 1,
-                                            text: '男'
-                                        }, {
-                                            value: 2,
-                                            text: '女'
-                                        }
-                                    ]
+                                    rule: {
+                                        maxlength: 1
+                                    },
+                                    message: {
+                                        maxlength: "做多{0}位"
+                                    }
+                                }, {
+                                    type: 'text',//类型
+                                    name: 'phone',//name
+                                    id: 'phone',//id
+                                    label: '电话'
+                                }, {
+                                    type: 'text',//类型
+                                    name: 'fax',//name
+                                    id: 'fax',//id
+                                    label: '传真'
+                                }, {
+                                    type: 'text',//类型
+                                    name: 'mobile',//name
+                                    id: 'mobile',//id
+                                    label: '手机'
                                 }, {
                                     type: 'text',
                                     name: 'jobTitle',
@@ -135,8 +142,8 @@
                                     cls: 'input-large'
                                 }, {
                                     type: 'text',
-                                    name: 'leader',
-                                    id: 'leader',
+                                    name: 'leaderName',
+                                    id: 'leaderName',
                                     label: '主管领导',
                                     cls: 'input-large'
                                 }, {
@@ -144,7 +151,7 @@
                                     name: 'orgId',
                                     id: 'orgId',//id
                                     label: '组织机构',//左边label
-                                    url: App.href + "/api/animalDisease/orgInfo/treeNodes?animal_disease_token=" + App.token,
+                                    url: App.href + "/api/animal/orgInfo/treeNodes?animal_disease_token=" + App.token,
                                     expandAll: true,
                                     autoParam: ["id", "name", "pId"],
                                     chkStyle: "radio",
@@ -158,8 +165,39 @@
                             ]
                         };
                         var form = modal.$body.orangeForm(formOpts)
-                        form.loadRemote(App.href + "/api/animalDisease/userInfo/load/" + data.userId)
+                        form.loadRemote(App.href + "/api/animal/userInfo/load/" + data.userId)
                         modal.show()
+                    }
+                }, {
+                    text: "绑定",
+                    cls: "btn-warning btn-sm",
+                    visible: function (index, data) {
+                        return data.platformId <= 0;
+                    },
+                    handle: function (index, data) {
+                        bootbox.confirm("确定该操作?", function (result) {
+                            if (result) {
+                                var requestUrl = App.href + "/api/animal/userInfo/bind/"+data.userId;
+                                $.ajax({
+                                    type: "GET",
+                                    beforeSend: function (request) {
+                                        request.setRequestHeader("X-Auth-Token", App.token)
+                                    },
+                                    dataType: "json",
+                                    url: requestUrl,
+                                    success: function (data) {
+                                        if (data.code === 200) {
+                                            grid.reload()
+                                        } else {
+                                            alert(data.message)
+                                        }
+                                    },
+                                    error: function (e) {
+                                        alert("请求异常。")
+                                    }
+                                });
+                            }
+                        });
                     }
                 }, {
                     text: "删除",
@@ -167,7 +205,7 @@
                     handle: function (index, data) {
                         bootbox.confirm("确定该操作?", function (result) {
                             if (result) {
-                                var requestUrl = App.href + "/api/animalDisease/userInfo/delete";
+                                var requestUrl = App.href + "/api/animal/userInfo/delete";
                                 $.ajax({
                                     type: "POST",
                                     beforeSend: function (request) {
@@ -208,7 +246,7 @@
                             id: "add_user_form",
                             name: "add_user_form",
                             method: "POST",
-                            action: App.href + "/api/animalDisease/userInfo/insert",//表单action
+                            action: App.href + "/api/animal/userInfo/insert",//表单action
                             ajaxSubmit: true,//是否使用ajax提交表单
                             rowEleNum: 1,
                             ajaxSuccess: function () {
@@ -297,20 +335,31 @@
                                         required: "请输入真实姓名"
                                     }
                                 }, {
-                                    type: 'radioGroup',
+                                    type: 'text',
                                     name: 'gender',
                                     id: 'gender',
                                     label: '性别',
-                                    inline: true,
-                                    items: [
-                                        {
-                                            value: 1,
-                                            text: '男'
-                                        }, {
-                                            value: 2,
-                                            text: '女'
-                                        }
-                                    ]
+                                    rule: {
+                                        maxlength: 1
+                                    },
+                                    message: {
+                                        maxlength: "做多{0}位"
+                                    }
+                                }, {
+                                    type: 'text',//类型
+                                    name: 'phone',//name
+                                    id: 'phone',//id
+                                    label: '电话'
+                                }, {
+                                    type: 'text',//类型
+                                    name: 'fax',//name
+                                    id: 'fax',//id
+                                    label: '传真'
+                                }, {
+                                    type: 'text',//类型
+                                    name: 'mobile',//name
+                                    id: 'mobile',//id
+                                    label: '手机'
                                 }, {
                                     type: 'text',
                                     name: 'jobTitle',
@@ -319,8 +368,8 @@
                                     cls: 'input-large'
                                 }, {
                                     type: 'text',
-                                    name: 'leader',
-                                    id: 'leader',
+                                    name: 'leaderName',
+                                    id: 'leaderName',
                                     label: '主管领导',
                                     cls: 'input-large'
                                 }, {
@@ -328,7 +377,7 @@
                                     name: 'orgId',
                                     id: 'orgId',//id
                                     label: '组织机构',//左边label
-                                    url: App.href + "/api/animalDisease/orgInfo/treeNodes?animal_disease_token=" + App.token,
+                                    url: App.href + "/api/animal/orgInfo/treeNodes?animal_disease_token=" + App.token,
                                     expandAll: true,
                                     autoParam: ["id", "name", "pId"],
                                     chkStyle: "radio",
@@ -348,13 +397,19 @@
             ],
             search: {
                 rowEleNum: 2,
-                //搜索栏元素
-                items: [{
-                    type: "text",
-                    label: "真实姓名",
-                    name: "realName",
-                    placeholder: "输入要搜索的真实姓名"
-                }]
+                items: [
+                    {
+                        type: "text",
+                        label: "登录名",
+                        name: "loginName",
+                        placeholder: "输入要搜索的登录名"
+                    }, {
+                        type: "text",
+                        label: "真实姓名",
+                        name: "realName",
+                        placeholder: "输入要搜索的真实姓名"
+                    }
+                ]
             }
         };
         grid = window.App.content.find("#user_info_grid").orangeGrid(options)
