@@ -4,14 +4,14 @@
 
 (function ($, window, document, undefined) {
     var mapping = {
-        "/api/animal/report/month/history": "monthHistory"
+        "/api/animal/report/month/summary": "monthSummary"
     };
     App.requestMapping = $.extend({}, window.App.requestMapping, mapping);
-    App.monthHistory = {
+    App.monthSummary = {
         page: function (title) {
             App.content.empty()
             App.title(title)
-            var content = $('<div class="panel-body" id="month_history_grid"></div>')
+            var content = $('<div class="panel-body" id="month_summary_grid"></div>')
             App.content.append(content)
             initEvents()
         }
@@ -19,7 +19,7 @@
     var initEvents = function () {
         var grid = {}
         var options = {
-            url: App.href + "/api/animal/report/month/history",
+            url: App.href + "/api/animal/report/month/summary",
             beforeSend: function (request) {
                 request.setRequestHeader("X-Auth-Token", App.token);
             },
@@ -46,12 +46,6 @@
                 }, {
                     title: "上报时间",
                     field: "reportTime"
-                }, {
-                    title: "上报状态",
-                    field: "reportStatus",
-                    format: function (i, d) {
-                        return d.reportStatus == 1 ? "已上报" : "起草中"
-                    }
                 }
             ],
             actionColumnText: "操作",//操作列文本
@@ -64,6 +58,7 @@
                         var modal = $.orangeModal({
                             id: "report_summary_modal",
                             height: 450,
+                            width: 1200,
                             title: "查看",
                             destroy: true,
                             buttons: [
@@ -72,7 +67,8 @@
                                     text: '保存到本地',
                                     cls: "btn-info",
                                     handle: function () {
-                                        App.download("/api/animal/excel/download/" + data.reportId)
+                                        App.download("/api/animal/excel/downloadSummary?templateId="
+                                            + data.templateId+"&beginTime="+data.beginTime)
                                     }
                                 }, {
                                     type: 'button',
@@ -84,7 +80,7 @@
                                 }
                             ]
                         })
-                        var requestUrl = App.href + "/api/animal/excel/load/" + data.reportId
+                        var requestUrl = App.href + "/api/animal/excel/summary"
                         $.ajax({
                             type: "GET",
                             beforeSend: function (request) {
@@ -92,6 +88,10 @@
                             },
                             dataType: "json",
                             url: requestUrl,
+                            data: {
+                                templateId: data.templateId,
+                                beginTime: data.beginTime
+                            },
                             success: function (data) {
                                 if (data.code === 200) {
                                     modal.show()
@@ -117,30 +117,7 @@
                         id: "templateId",
                         label: "报表名称",
                         name: "templateId",
-                        items: [
-                            {
-                                text: "全部",
-                                value: ""
-                            }
-                        ],
                         itemsUrl: App.href + "/api/animal/template/options?reportType=7&animal_disease_token=" + App.token
-                    }, {
-                        type: "select",
-                        id: "status",
-                        label: "状态",
-                        name: "status",
-                        items: [
-                            {
-                                text: "全部",
-                                value: ""
-                            }, {
-                                text: "起草中",
-                                value: 0
-                            }, {
-                                text: "已上报",
-                                value: 1
-                            }
-                        ]
                     }, {
                         type: "html",
                         label: "报表所属时间段",
@@ -181,6 +158,6 @@
                 ]
             }
         }
-        grid = window.App.content.find("#month_history_grid").orangeGrid(options)
+        grid = window.App.content.find("#month_summary_grid").orangeGrid(options)
     }
 })(jQuery, window, document)
