@@ -281,9 +281,9 @@
                                     error: function (e) {
                                         alert("请求异常。")
                                     }
-                                });
+                                })
                             }
-                        });
+                        })
                     }
                 }],
             tools: [

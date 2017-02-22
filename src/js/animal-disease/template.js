@@ -37,21 +37,21 @@
                     title: "模板名称",
                     field: "templateName"
                 }, {
-                    title: '填报周期',
-                    field: 'reportCycle',
+                    title: '填报类型',
+                    field: 'reportType',
                     format: function (i, data) {
-                        switch (data.reportCycle) {
+                        switch (data.reportType) {
                             case 3:
-                                return '月度'
+                                return '月度免疫'
                                 break
                             case 2:
-                                return '周报'
+                                return '春秋防周报'
                                 break
                             case 7:
-                                return '半年报'
+                                return '春秋防数据汇总'
                                 break
                             case 4:
-                                return '季度'
+                                return '物资储备'
                                 break
                             default:
                                 return '-'
@@ -59,24 +59,24 @@
                         }
                     }
                 }, {
-                    title: '填报类型',
-                    field: 'reportType',
+                    title: '填报周期',
+                    field: 'reportCycle',
                     format: function (i, data) {
-                        switch (data.reportType) {
+                        switch (data.reportCycle) {
                             case 7:
-                                return '月度免疫'
+                                return '当月疫苗订购与使用管理'
                                 break
                             case 3:
-                                return '物资储备'
+                                return '应急物资储备管理'
                                 break
                             case 4:
-                                return '春秋防周报'
+                                return '春防/秋防管理'
                                 break
                             case 12:
-                                return '春秋防数据总结'
+                                return '春秋防总结'
                                 break
                             case 2:
-                                return '应急管理'
+                                return '防控应急管理'
                                 break
                             default:
                                 return '-'
@@ -177,20 +177,17 @@
                                     inline: true,
                                     items: [
                                         {
-                                            value: 7,
+                                            value: 3,
                                             text: '月度免疫'
                                         }, {
-                                            value: 3,
+                                            value: 4,
                                             text: '物资储备'
                                         }, {
-                                            value: 4,
+                                            value: 2,
                                             text: '春秋防周报'
                                         }, {
-                                            value: 12,
+                                            value: 7,
                                             text: '春秋防数据汇总'
-                                        }, {
-                                            value: 2,
-                                            text: '应急管理'
                                         }
                                     ]
                                 }, {
@@ -201,17 +198,20 @@
                                     inline: true,
                                     items: [
                                         {
-                                            value: 3,
-                                            text: '月度'
-                                        }, {
-                                            value: 2,
-                                            text: '周报'
-                                        }, {
                                             value: 7,
-                                            text: '半年'
+                                            text: '当月疫苗订购与使用管理'
+                                        }, {
+                                            value: 3,
+                                            text: '应急物资储备管理'
                                         }, {
                                             value: 4,
-                                            text: '季度'
+                                            text: '春防/秋防管理'
+                                        }, {
+                                            value: 12,
+                                            text: '春秋防总结'
+                                        }, {
+                                            value: 2,
+                                            text: '防控应急管理'
                                         }
                                     ]
                                 }
@@ -338,20 +338,17 @@
                                     inline: true,
                                     items: [
                                         {
-                                            value: 7,
+                                            value: 3,
                                             text: '月度免疫'
                                         }, {
-                                            value: 3,
+                                            value: 4,
                                             text: '物资储备'
                                         }, {
-                                            value: 4,
+                                            value: 2,
                                             text: '春秋防周报'
                                         }, {
-                                            value: 12,
+                                            value: 7,
                                             text: '春秋防数据汇总'
-                                        }, {
-                                            value: 2,
-                                            text: '应急管理'
                                         }
                                     ]
                                 }, {
@@ -362,17 +359,20 @@
                                     inline: true,
                                     items: [
                                         {
-                                            value: 3,
-                                            text: '月度'
-                                        }, {
-                                            value: 2,
-                                            text: '周报'
-                                        }, {
                                             value: 7,
-                                            text: '半年'
+                                            text: '当月疫苗订购与使用管理'
+                                        }, {
+                                            value: 3,
+                                            text: '应急物资储备管理'
                                         }, {
                                             value: 4,
-                                            text: '季度'
+                                            text: '春防/秋防管理'
+                                        }, {
+                                            value: 12,
+                                            text: '春秋防总结'
+                                        }, {
+                                            value: 2,
+                                            text: '防控应急管理'
                                         }
                                     ]
                                 }
@@ -402,20 +402,17 @@
                                 text: '全部'
                             },
                             {
-                                value: 7,
+                                value: 3,
                                 text: '月度免疫'
                             }, {
-                                value: 3,
+                                value: 4,
                                 text: '物资储备'
                             }, {
-                                value: 4,
+                                value: 2,
                                 text: '春秋防周报'
                             }, {
-                                value: 12,
+                                value: 7,
                                 text: '春秋防数据汇总'
-                            }, {
-                                value: 2,
-                                text: '应急管理'
                             }
                         ]
                     }

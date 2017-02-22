@@ -26,7 +26,7 @@
             pageNum: 1,//当前页码
             pageSize: 15,//每页显示条数
             idField: "id",//id域指定
-            headField: "realName",
+            headField: "templateName",
             showCheck: true,//是否显示checkbox
             checkboxWidth: "3%",
             showIndexNum: true,
@@ -123,7 +123,7 @@
                                 value: ""
                             }
                         ],
-                        itemsUrl: App.href + "/api/animal/template/options?reportType=7&animal_disease_token=" + App.token
+                        itemsUrl: App.href + "/api/animal/template/options?reportType=3&animal_disease_token=" + App.token
                     }, {
                         type: "select",
                         id: "status",
