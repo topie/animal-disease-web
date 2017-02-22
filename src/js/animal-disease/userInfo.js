@@ -25,7 +25,7 @@
             },
             pageNum: 1,//当前页码
             pageSize: 15,//每页显示条数
-            idField: "id",//id域指定
+            idField: "id",
             headField: "realName",
             showCheck: true,//是否显示checkbox
             checkboxWidth: "3%",
@@ -48,6 +48,12 @@
                 }, {
                     field: 'leaderName',
                     title: '主管领导'
+                }, {
+                    field: 'isBind',
+                    title: '是否绑定',
+                    format: function (i, d) {
+                        return d.platformId > 0 ? "是" : "否"
+                    }
                 }
             ],
             actionColumnText: "操作",//操作列文本
@@ -120,19 +126,19 @@
                                         maxlength: "做多{0}位"
                                     }
                                 }, {
-                                    type: 'text',//类型
-                                    name: 'phone',//name
-                                    id: 'phone',//id
+                                    type: 'text',
+                                    name: 'phone',
+                                    id: 'phone',
                                     label: '电话'
                                 }, {
-                                    type: 'text',//类型
-                                    name: 'fax',//name
-                                    id: 'fax',//id
+                                    type: 'text',
+                                    name: 'fax',
+                                    id: 'fax',
                                     label: '传真'
                                 }, {
-                                    type: 'text',//类型
-                                    name: 'mobile',//name
-                                    id: 'mobile',//id
+                                    type: 'text',
+                                    name: 'mobile',
+                                    id: 'mobile',
                                     label: '手机'
                                 }, {
                                     type: 'text',
@@ -147,10 +153,10 @@
                                     label: '主管领导',
                                     cls: 'input-large'
                                 }, {
-                                    type: 'tree',//类型
+                                    type: 'tree',
                                     name: 'orgId',
-                                    id: 'orgId',//id
-                                    label: '组织机构',//左边label
+                                    id: 'orgId',
+                                    label: '组织机构',
                                     url: App.href + "/api/animal/orgInfo/treeNodes?animal_disease_token=" + App.token,
                                     expandAll: true,
                                     autoParam: ["id", "name", "pId"],
@@ -169,35 +175,84 @@
                         modal.show()
                     }
                 }, {
-                    text: "绑定",
-                    cls: "btn-warning btn-sm",
-                    visible: function (index, data) {
-                        return data.platformId <= 0;
+                    textHandle: function (i, d) {
+                        return d.platformId <= 0 ? '绑定并设置登录' : '设置登录'
                     },
+                    cls: "btn-warning btn-sm",
                     handle: function (index, data) {
-                        bootbox.confirm("确定该操作?", function (result) {
-                            if (result) {
-                                var requestUrl = App.href + "/api/animal/userInfo/bind/"+data.userId;
-                                $.ajax({
-                                    type: "GET",
-                                    beforeSend: function (request) {
-                                        request.setRequestHeader("X-Auth-Token", App.token)
-                                    },
-                                    dataType: "json",
-                                    url: requestUrl,
-                                    success: function (data) {
-                                        if (data.code === 200) {
-                                            grid.reload()
-                                        } else {
-                                            alert(data.message)
-                                        }
-                                    },
-                                    error: function (e) {
-                                        alert("请求异常。")
-                                    }
-                                });
-                            }
+                        var modal = $.orangeModal({
+                            id: "config_form_modal",
+                            title: "设置",
+                            destroy: true
                         });
+                        var formOpts = {
+                            id: "config_form",//表单id
+                            name: "config_form",//表单名
+                            method: "POST",//表单method
+                            action: App.href + "/api/animal/userInfo/updateConfig",//表单action
+                            ajaxSubmit: true,//是否使用ajax提交表单
+                            beforeSend: function (request) {
+                                request.setRequestHeader("X-Auth-Token", App.token);
+                            },
+                            ajaxSuccess: function () {
+                                modal.hide();
+                                grid.reload();
+                            },
+                            submitText: "保存",//保存按钮的文本
+                            showReset: true,//是否显示重置按钮
+                            resetText: "重置",//重置按钮文本
+                            isValidate: true,//开启验证
+                            buttons: [{
+                                type: 'button',
+                                text: '关闭',
+                                handle: function () {
+                                    modal.hide();
+                                }
+                            }],
+                            buttonsAlign: "center",
+                            items: [
+                                {
+                                    type: 'hidden',
+                                    name: 'platformId',
+                                    id: 'platformId'
+                                }, {
+                                    type: 'text',
+                                    name: 'password',
+                                    id: 'password',
+                                    label: '密码',
+                                    cls: 'input-medium',
+                                    rule: {
+                                        required: true,
+                                        minlength: 4,
+                                        maxlength: 64
+                                    },
+                                    message: {
+                                        required: "请输入密码",
+                                        minlength: "至少{0}位",
+                                        maxlength: "做多{0}位"
+                                    }
+                                }, {
+                                    type: 'tree',
+                                    name: 'roles',
+                                    id: 'roles',
+                                    label: '角色',
+                                    url: App.href + "/api/sys/role/treeNodes?animal_disease_token=" + App.token,
+                                    expandAll: true,
+                                    autoParam: ["id", "name", "pId"],
+                                    chkStyle: "checkbox",
+                                    detail: "如何设置角色?<a target='_blank' href='?u=/api/sys/role/pageList'>点击设置</a>",
+                                    rule: {
+                                        required: true
+                                    },
+                                    message: {
+                                        required: "请选择至少一个角色"
+                                    }
+                                }
+                            ]
+                        };
+                        var form = modal.$body.orangeForm(formOpts);
+                        form.loadRemote(App.href + "/api/animal/userInfo/loadConfig/" + data.userId);
+                        modal.show();
                     }
                 }, {
                     text: "删除",
@@ -267,10 +322,10 @@
                             buttonsAlign: "center",
                             items: [
                                 {
-                                    type: 'text',//类型
-                                    name: 'loginName',//name
-                                    id: 'loginName',//id
-                                    label: '登录名',//左边label
+                                    type: 'text',
+                                    name: 'loginName',
+                                    id: 'loginName',
+                                    label: '登录名',
                                     cls: 'input-large',
                                     rule: {
                                         required: true,
@@ -293,10 +348,10 @@
                                         remote: "登录名被占用"
                                     }
                                 }, {
-                                    type: 'password',//类型
-                                    name: 'password',//name
-                                    id: 'password',//id
-                                    label: '密码',//左边label
+                                    type: 'password',
+                                    name: 'password',
+                                    id: 'password',
+                                    label: '密码',
                                     cls: 'input-medium',
                                     rule: {
                                         required: true,
@@ -309,10 +364,10 @@
                                         maxlength: "做多{0}位"
                                     }
                                 }, {
-                                    type: 'password',//类型
-                                    name: 'password2',//name
-                                    id: 'password2',//id
-                                    label: '确认密码',//左边label
+                                    type: 'password',
+                                    name: 'password2',
+                                    id: 'password2',
+                                    label: '确认密码',
                                     cls: 'input-medium',
                                     rule: {
                                         required: true,
@@ -346,19 +401,19 @@
                                         maxlength: "做多{0}位"
                                     }
                                 }, {
-                                    type: 'text',//类型
-                                    name: 'phone',//name
-                                    id: 'phone',//id
+                                    type: 'text',
+                                    name: 'phone',
+                                    id: 'phone',
                                     label: '电话'
                                 }, {
-                                    type: 'text',//类型
-                                    name: 'fax',//name
-                                    id: 'fax',//id
+                                    type: 'text',
+                                    name: 'fax',
+                                    id: 'fax',
                                     label: '传真'
                                 }, {
-                                    type: 'text',//类型
-                                    name: 'mobile',//name
-                                    id: 'mobile',//id
+                                    type: 'text',
+                                    name: 'mobile',
+                                    id: 'mobile',
                                     label: '手机'
                                 }, {
                                     type: 'text',
@@ -373,10 +428,10 @@
                                     label: '主管领导',
                                     cls: 'input-large'
                                 }, {
-                                    type: 'tree',//类型
+                                    type: 'tree',
                                     name: 'orgId',
-                                    id: 'orgId',//id
-                                    label: '组织机构',//左边label
+                                    id: 'orgId',
+                                    label: '组织机构',
                                     url: App.href + "/api/animal/orgInfo/treeNodes?animal_disease_token=" + App.token,
                                     expandAll: true,
                                     autoParam: ["id", "name", "pId"],
