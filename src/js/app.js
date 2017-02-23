@@ -3,6 +3,16 @@
  */
 
 (function ($, window, document, undefined) {
+    function isIE() { //ie?
+        return !!(!!window.ActiveXObject || "ActiveXObject" in window);
+    }
+
+    if (isIE()) {
+        $.ajaxSetup({
+            cache: false //关闭AJAX缓存
+        });
+    }
+
     window.App = {
         href: "http://127.0.0.1",
         requestMapping: {}
