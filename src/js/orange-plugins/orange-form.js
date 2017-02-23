@@ -453,12 +453,12 @@
                 return ele;
             },
             'display': function (data, form) {
-                var textTmpl = '<p id="${id_}" name="${name_}" ${attribute_} class="form-control-static"></p>';
+                var textTmpl = '<p style="${style_}" id="${id_}" name="${name_}" ${attribute_} class="form-control-static"></p>';
                 var ele = $.tmpl(textTmpl, {
                     "id_": (data.id === undefined ? data.name : data.id),
                     "name_": data.name,
-                    "attribute_": (data.attribute === undefined ? ""
-                        : data.attribute)
+                    "style_": (data.style === undefined ? ""
+                        : data.style)
                 });
                 ele.data("format", data.format);
                 return ele;
@@ -1541,7 +1541,7 @@
                 var format = ele.data("format");
                 if (format !== undefined)
                     value = format(value);
-                ele.text(value);
+                ele.html(value);
             } else if (ele.is('table')) {
                 this._renderMultipleFiles(ele, name, value);
             } else {

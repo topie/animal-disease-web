@@ -25,7 +25,7 @@
             },
             pageNum: 1,//当前页码
             pageSize: 15,//每页显示条数
-            idField: "id",//id域指定
+            idField: "templateId",//id域指定
             headField: "templateName",
             showCheck: true,//是否显示checkbox
             checkboxWidth: "3%",
