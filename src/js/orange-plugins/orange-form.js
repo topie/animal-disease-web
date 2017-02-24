@@ -1557,7 +1557,7 @@
             var that = this;
             if (this._data !== undefined) {
                 $.each(this._data, function (i, value) {
-                    that._loadValue(i, value);
+                    that._alue(i, value);
                 });
             } else {
                 if (this.$form !== undefined)

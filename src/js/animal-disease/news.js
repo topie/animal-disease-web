@@ -45,12 +45,12 @@
             actionColumnWidth: "20%",
             actionColumns: [
                 {
-                    text: "查看",
+                    text: "预览",
                     cls: "btn-primary btn-sm",
                     handle: function (index, data) {
                         var modal = $.orangeModal({
                             id: "news_edit_modal",
-                            title: "查看",
+                            title: data.newTitle,
                             width: 900,
                             height: 500,
                             destroy: true,
@@ -87,25 +87,30 @@
                             buttonsAlign: "center",
                             items: [
                                 {
+                                    type: 'hidden',
+                                    name: 'newDate',
+                                    id: 'newDate'
+
+                                }, {
                                     type: 'display',
                                     name: 'newTitle',
                                     id: 'newTitle',
                                     style: 'text-align: center;',
                                     label: '',
-                                    format: function (i, d) {
-                                        return '<h1>' + data.newTitle + '</h1>'
+                                    format: function (val) {
+                                        return '<h1>' + val + '</h1>'
                                     }
                                 },
                                 {
                                     type: 'display',
-                                    name: 'newDate',
-                                    id: 'newDate',
+                                    name: 'newCount',
+                                    id: 'newCount',
                                     style: 'text-align: right;',
                                     label: '',
-                                    format: function (i, d) {
+                                    format: function (val) {
                                         return '<h4>' +
-                                            '创建时间: <span id="createTime">' + data.newDate + '</span> &nbsp;' +
-                                            '阅读次数: <span id="lookAmount">' + data.newCount + '</span> ' +
+                                            '创建时间: <span id="createTime">' + $("#newDate").val() + '</span> &nbsp;' +
+                                            '阅读次数: <span id="lookAmount">' + val + '</span> ' +
                                             '</h4><hr>'
                                     }
                                 },
@@ -118,7 +123,7 @@
                             ]
                         };
                         var form = modal.$body.orangeForm(formOpts)
-                        form.loadRemote(App.href + "/api/animal/news/load/" + data.newId)
+                        form.loadRemote(App.href + "/api/animal/news/view/" + data.newId)
                     }
                 }, {
                     text: "编辑",

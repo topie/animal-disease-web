@@ -72,9 +72,11 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                                class="glyphicon glyphicon-user"></i> 账户 <span class="caret"></span></a>
+                                class="glyphicon glyphicon-user"></i> 账户设置 <span class="caret"></span></a>
                         <ul class="dropdown-menu animated flipInX" role="menu">
                             <li><a id="side-vertical" href="javascript:void(0);"><i class="fa fa-gear"></i> 切换横竖屏</a>
+                            </li>
+                            <li><a id="profile" href="javascript:void(0);"><i class="fa fa-user"></i> 个人信息 </a>
                             </li>
                             <li><a id="logout" href="javascript:void(0);">退出登录</a></li>
                         </ul>
@@ -176,6 +178,7 @@
 <script src="js/animal-disease/monthHistory.js"></script>
 <script src="js/animal-disease/monthSummary.js"></script>
 <script src="js/animal-disease/monthFill.js"></script>
+<script src="js/animal-disease/reReport.js"></script>
 
 <script type="text/javascript">
     bootbox.setLocale("zh_CN");
@@ -199,6 +202,9 @@
                 }
             }
         );
+    });
+    $("#profile").on("click", function () {
+        App.index.editProfile();
     });
 </script>
 </body>
