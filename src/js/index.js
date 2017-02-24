@@ -43,14 +43,15 @@
                 request.setRequestHeader("X-Auth-Token", App.token);
             },
             pageNum: 1,//当前页码
-            pageSize: 15,//每页显示条数
+            pageSize: 10,//每页显示条数
             idField: "newId",//id域指定
             headField: "newTitle",
             showCheck: true,//是否显示checkbox
             checkboxWidth: "3%",
             showIndexNum: true,
             indexNumWidth: "5%",
-            pageSelect: [2, 15, 30, 50],
+            showContentType: false,
+            pageSelect: [5, 10, 30, 50],
             columns: [
                 {
                     title: "标题",
