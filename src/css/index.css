@@ -1,8 +1,9 @@
 /*alteracoes da barra de navegacao principal*/
 .ldhd-bg {
-    background: url("../cdn/img/body_bg_page.jpg") no-repeat right;
+    background: url("../cdn/img/logo.png");
     padding: 28px 0;
-    height: 143px;
+    height: 95px;
+    width: 100%;
     background-size: cover;
 }
 
@@ -11,7 +12,7 @@ div.head-link {
     background-size: cover;
     margin-left: 10px;
     margin-right: 10px;
-    width: 80px;
+    width: auto;
     height: 80px;
 }
 

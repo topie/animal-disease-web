@@ -424,7 +424,7 @@
                         function (index, item) {
                             var itemDiv = $.tmpl(
                                 Grid.statics.searchElementTmpl, {
-                                    "span_": rowEleSpan
+                                    "span_": (item.rowNum > 0 ? item.rowNum * rowEleSpan : rowEleSpan)
                                 }).appendTo(searchFormRow);
                             if (item.label != undefined) {
                                 var label = $.tmpl(
