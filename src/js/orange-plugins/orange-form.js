@@ -387,6 +387,20 @@
                 }
             }
 
+            if (item.change !== undefined) {
+                ele.parent().find('[drole=main]').on('change', function () {
+                    var value = $(this).val();
+                    item.change(that, value);
+                });
+
+                if (ele.parent().find('[drole=main]').is("input[type=text]") || ele.parent().find('[drole=main]').is("textarea")) {
+                    ele.parent().find('[drole=main]').on("keypress keyup", function () {
+                        var value = $(this).val();
+                        item.change(that, value);
+                    });
+                }
+            }
+
             // 记录元素数据
             wrapper.data("data", item);
             this._module[item.name] = wrapper;
@@ -446,14 +460,19 @@
                     "attribute_": (data.attribute === undefined ? ""
                         : data.attribute)
                 });
-                ele.append(data.html);
+                if (data.eleHandle != undefined) {
+                    var p = data.eleHandle(data.handleParams);
+                    ele.append(p);
+                } else {
+                    ele.append(data.html);
+                }
                 if (data.loadHandle !== undefined) {
                     ele.data("load", data.loadHandle);
                 }
                 return ele;
             },
             'display': function (data, form) {
-                var textTmpl = '<p style="${style_}" id="${id_}" name="${name_}" ${attribute_} class="form-control-static"></p>';
+                var textTmpl = '<p drole="main" style="${style_}" id="${id_}" name="${name_}" ${attribute_} class="form-control-static"></p>';
                 var ele = $.tmpl(textTmpl, {
                     "id_": (data.id === undefined ? data.name : data.id),
                     "name_": data.name,
@@ -464,7 +483,7 @@
                 return ele;
             },
             'hidden': function (data, form) {
-                var textTmpl = '<input type="hidden" id="${id_}" name="${name_}" class="form-control" ${attribute_}>';
+                var textTmpl = '<input drole="main" type="hidden" id="${id_}" name="${name_}" class="form-control" ${attribute_}>';
                 var ele = $.tmpl(textTmpl, {
                     "id_": (data.id === undefined ? data.name : data.id),
                     "name_": data.name,
@@ -474,7 +493,7 @@
                 return ele;
             },
             'text': function (data, form) {
-                var textTmpl = '<input type="text" showicon=${showIcon_} id="${id_}" name="${name_}" class="form-control ${cls_}" ${readonly_} ${disabled_} ${attribute_} placeholder="${placeholder_}">';
+                var textTmpl = '<input drole="main" type="text" showicon=${showIcon_} id="${id_}" name="${name_}" class="form-control ${cls_}" ${readonly_} ${disabled_} ${attribute_} placeholder="${placeholder_}">';
                 var ele = $.tmpl(textTmpl, {
                     "id_": (data.id === undefined ? data.name : data.id),
                     "name_": data.name,
@@ -492,7 +511,7 @@
                 return ele;
             },
             'password': function (data, form) {
-                var passwordTmpl = '<input type="password" id="${id_}" name="${name_}" class="form-control ${cls_}" ${readonly_} ${disabled_} ${attribute_} placeholder="${placeholder_}">';
+                var passwordTmpl = '<input drole="main" type="password" id="${id_}" name="${name_}" class="form-control ${cls_}" ${readonly_} ${disabled_} ${attribute_} placeholder="${placeholder_}">';
                 var ele = $.tmpl(passwordTmpl, {
                     "id_": (data.id === undefined ? data.name : data.id),
                     "name_": data.name,
@@ -508,7 +527,7 @@
                 return ele;
             },
             'textarea': function (data, form) {
-                var textareaTmpl = '<textarea id="${id_}" name="${name_}" class="form-control ${cls_}" ${readonly_} ${disabled_} ${attribute_} rows="${rows_}"></textarea>';
+                var textareaTmpl = '<textarea drole="main" id="${id_}" name="${name_}" class="form-control ${cls_}" ${readonly_} ${disabled_} ${attribute_} rows="${rows_}"></textarea>';
                 var ele = $.tmpl(textareaTmpl, {
                     "id_": (data.id === undefined ? data.name : data.id),
                     "name_": data.name,
@@ -522,7 +541,7 @@
                 return ele;
             },
             'select': function (data, form) {
-                var selectTmpl = '<select id="${id_}" name="${name_}" ${attribute_} ${disabled_} class="form-control ${cls_}"></select>';
+                var selectTmpl = '<select drole="main" id="${id_}" name="${name_}" ${attribute_} ${disabled_} class="form-control ${cls_}"></select>';
                 var optionTmpl = '<option value=${value_} ${selected}>${text_}</option>';
                 var ele = $.tmpl(selectTmpl, {
                     "id_": (data.id === undefined ? data.name : data.id),
@@ -566,7 +585,7 @@
             'checkboxGroup': function (data, form) {
                 var inlineCls = "checkbox-inline";
                 var wrapperTmpl = '<div id="${id_}_cbg" name="${name_}_cbg" ${attribute_} class="checkbox-list"></div>';
-                var checkboxTmpl = '<label class="${inline_}"><input name="${name_}" value="${value_}" type="checkbox" ${checked_} ${attribute_} ${disabled_} >${text_}</label>';
+                var checkboxTmpl = '<label class="${inline_}"><input drole="main" name="${name_}" value="${value_}" type="checkbox" ${checked_} ${attribute_} ${disabled_} >${text_}</label>';
                 var ele = $.tmpl(wrapperTmpl, {
                     "id_": (data.id === undefined ? data.name : data.id),
                     "name_": data.name,
@@ -638,7 +657,7 @@
             'radioGroup': function (data, form) {
                 var inlineCls = "radio-inline";
                 var wrapperTmpl = '<div class="radio-list"></div>';
-                var radioTmpl = '<label class="radio ${inline_}"><input name="${name_}" value="${value_}" type="radio" ${checked_} ${attribute_}>${text_}</label>';
+                var radioTmpl = '<label class="radio ${inline_}"><input drole="main" name="${name_}" value="${value_}" type="radio" ${checked_} ${attribute_}>${text_}</label>';
                 var ele = $.tmpl(wrapperTmpl, {
                     "id_": (data.id === undefined ? data.name : data.id),
                     "name_": data.name,
@@ -699,7 +718,7 @@
             },
             'datepicker': function (data, form) {
                 var dateTmpl = '<div class="input-group input-medium">'
-                    + '<input type="text" role="date-input" id="${id_}" name=${name_} value="${value_}" class="form-control">'
+                    + '<input drole="main" type="text" role="date-input" id="${id_}" name=${name_} value="${value_}" class="form-control">'
                     + '<span role="icon" class="input-group-addon">'
                     + '<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>' + '</span></div>';
                 if (typeof(moment) == "undefined") {
@@ -737,7 +756,7 @@
                     + '<span class="input-group-addon btn btn-default btn-file">'
                     + '<span class="fileinput-new">选择文件 </span>'
                     + '<span class="fileinput-exists">变更 </span>'
-                    + '<input type="text" role="file-input" id="${id_}" name="${name_}" value="" style="display:none;"><input type="file" role="file" id="file_${id_}" name="file"/>'
+                    + '<input drole="main" type="text" role="file-input" id="${id_}" name="${name_}" value="" style="display:none;"><input type="file" role="file" id="file_${id_}" name="file"/>'
                     + '</span>'
                     + '<a href="javascript:;" class="input-group-addon btn btn-danger fileinput-exists" data-dismiss="fileinput">删除 </a>'
                     + '</div></div></div>';
@@ -853,7 +872,7 @@
                     + '<span class="btn btn-default btn-file">'
                     + '<span class="fileinput-new">选择图片 </span>'
                     + '<span class="fileinput-exists">更改</span>'
-                    + '<input type="text" role="image-input" id="${id_}" name="${name_}" style="display:none;"><input role="file" type="file" id="image_${id_}" name="file"/>'
+                    + '<input drole="main" type="text" role="image-input" id="${id_}" name="${name_}" style="display:none;"><input role="file" type="file" id="image_${id_}" name="file"/>'
                     + '</span>'
                     + '<a href="javascript:;" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">删除</a>'
                     + '</div></div></div>';
@@ -977,7 +996,7 @@
                 return ele;
             },
             'tree': function (data, form) {
-                var treeTmp = '<input role="tree_${id_}_input" data-type="tree-input" type="text" id="${id_}" name="${name_}" value="" class="hide"/>'
+                var treeTmp = '<input drole="main" role="tree_${id_}_input" data-type="tree-input" type="text" id="${id_}" name="${name_}" value="" class="hide"/>'
                     + '<ul id="tree_${id_}" role="tree" class="ztree"></ul>';
                 var ele = $.tmpl(treeTmp, {
                     "id_": (data.id === undefined ? data.name : data.id),
@@ -1021,6 +1040,7 @@
                                 $("[role='" + treeId + "_input']").val("")
                                     .attr("value", "");
                             }
+                            $("[role='" + treeId + "_input']").trigger("change");
                         },
                         onAsyncSuccess: function (event, treeId, treeNode, msg) {
                             var zTree = $.fn.zTree.getZTreeObj(treeId);
@@ -1049,7 +1069,7 @@
                 return ele;
             },
             'kindEditor': function (data, form) {
-                var kindeditorTmpl = '<textarea role="kindEditor" class="form-control" id="${id_}" name="${name_}"></textarea>';
+                var kindeditorTmpl = '<textarea drole="main" role="kindEditor" class="form-control" id="${id_}" name="${name_}"></textarea>';
                 var ele = $.tmpl(kindeditorTmpl, {
                     "id_": (data.id === undefined ? data.name : data.id),
                     "name_": data.name
@@ -1216,7 +1236,6 @@
                             },
                             done: function (e, data) {// 设置文件上传完毕事件的回调函数
                                 $(".start", data.content).remove();
-                                console.info(data.result);
                                 var id = data.result.attachmentId;
                                 var name = data.result.attachmentName;
                                 var url = data.result.attachmentUrl;

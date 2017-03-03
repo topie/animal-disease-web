@@ -146,7 +146,6 @@
                         label: "报表所属时间段",
                         eleHandle: function () {
                             var p = $('<p></p>')
-
                             var ele = $('<select name="period" style="float: left;width: 33%" class="form-control">' +
                                 '</select>')
                             var date = new Date;
