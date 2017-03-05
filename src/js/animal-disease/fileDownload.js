@@ -48,107 +48,13 @@
             actionColumnWidth: "20%",
             actionColumns: [
                 {
-                    text: "编辑",
-                    cls: "btn-primary btn-sm",
-                    handle: function (index, data) {
-                        var modal = $.orangeModal({
-                            id: "file_download_edit_modal",
-                            title: "编辑",
-                            destroy: true
-                        })
-                        var formOpts = {
-                            id: "file_download_form",
-                            name: "file_download_form",
-                            method: "POST",
-                            action: App.href + "/api/animal/fileDownload/update",
-                            ajaxSubmit: true,//是否使用ajax提交表单
-                            beforeSend: function (request) {
-                                request.setRequestHeader("X-Auth-Token", App.token)
-                            },
-                            ajaxSuccess: function () {
-                                modal.hide()
-                                grid.reload()
-                            },
-                            submitText: "保存",//保存按钮的文本
-                            showReset: true,//是否显示重置按钮
-                            resetText: "重置",//重置按钮文本
-                            isValidate: true,//开启验证
-                            buttons: [{
-                                type: 'button',
-                                text: '关闭',
-                                handle: function () {
-                                    modal.hide()
-                                }
-                            }],
-                            buttonsAlign: "center",
-                            items: [
-                                {
-                                    type: 'hidden',
-                                    name: 'fileid',
-                                    id: 'fileid'
-                                }, {
-                                    type: 'text',
-                                    name: 'filename',
-                                    id: 'filename',
-                                    label: '文件名称',
-                                    cls: 'input-large',
-                                    rule: {
-                                        required: true
-                                    },
-                                    message: {
-                                        required: "请输入文件名称"
-                                    }
-                                }, {
-                                    type: 'text',
-                                    name: 'filetype',
-                                    id: 'filetype',
-                                    label: '文件类型',
-                                    cls: 'input-large',
-                                    rule: {
-                                        required: true
-                                    },
-                                    message: {
-                                        required: "请输入文件类型"
-                                    }
-                                }
-                            ]
-                        };
-                        var form = modal.$body.orangeForm(formOpts)
-                        form.loadRemote(App.href + "/api/animal/fileDownload/load/" + data.fileid)
-                        modal.show()
-                    }
-                }, {
-                    text: "删除",
+                    text: "下载",
                     cls: "btn-danger btn-sm",
                     handle: function (index, data) {
-                        bootbox.confirm("确定该操作?", function (result) {
-                            if (result) {
-                                var requestUrl = App.href + "/api/animal/fileDownload/delete";
-                                $.ajax({
-                                    type: "POST",
-                                    beforeSend: function (request) {
-                                        request.setRequestHeader("X-Auth-Token", App.token)
-                                    },
-                                    dataType: "json",
-                                    data: {
-                                        id: data.fileid
-                                    },
-                                    url: requestUrl,
-                                    success: function (data) {
-                                        if (data.code === 200) {
-                                            grid.reload()
-                                        } else {
-                                            alert(data.message)
-                                        }
-                                    },
-                                    error: function (e) {
-                                        alert("请求异常。")
-                                    }
-                                });
-                            }
-                        });
+                        window.open(data.filepath);
                     }
-                }],
+                }
+            ],
             tools: [
                 {
                     text: " 添 加",//按钮文本
@@ -207,6 +113,24 @@
                                     },
                                     message: {
                                         required: "请输入文件类型"
+                                    }
+                                }, {
+                                    type: 'file',
+                                    id: 'filepath',
+                                    name: 'filepath',
+                                    label: '文件位置',
+                                    isAjaxUpload: true,
+                                    onSuccess: function (data) {
+                                        $("#filepath").attr("value", data.attachmentUrl);
+                                    },
+                                    deleteHandle: function () {
+                                        $("#filepath").attr("value", "");
+                                    },
+                                    rule: {
+                                        required: true
+                                    },
+                                    message: {
+                                        required: "请上传文件"
                                     }
                                 }
                             ]
