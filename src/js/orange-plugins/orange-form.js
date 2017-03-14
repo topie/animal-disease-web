@@ -996,11 +996,20 @@
                 return ele;
             },
             'tree': function (data, form) {
-                var treeTmp = '<input drole="main" role="tree_${id_}_input" data-type="tree-input" type="text" id="${id_}" name="${name_}" value="" class="hide"/>'
-                    + '<ul id="tree_${id_}" role="tree" class="ztree"></ul>';
+                var treeTmp =
+                    '<div class="form-group input-group ${hideSearch_}" style="width: 33%;">'
+                    + '<input type="text" id="tree_search_${id_}" class="form-control">'
+                    + '<span class="input-group-btn">'
+                    + '<button class="btn btn-default" id="tree_search_btn_${id_}" type="button"><i class="fa fa-search"></i>'
+                    + '</button>'
+                    + '</span>'
+                    + '</div>'
+                    + '<input drole="main" role="tree_${id_}_input" data-type="tree-input" type="text" id="${id_}" name="${name_}" value="" class="hide"/>'
+                    + '<ul id="tree_${id_}" role="tree" did="${id_}" class="ztree"></ul>';
                 var ele = $.tmpl(treeTmp, {
                     "id_": (data.id === undefined ? data.name : data.id),
-                    "name_": data.name
+                    "name_": data.name,
+                    "hideSearch_": data.hideSearch !== undefined && !data.hideSearch ? 'hide' : ''
                 });
                 var chkboxType = data.chkboxType === undefined ? {"Y": "p", "N": "p"} : data.chkboxType;
                 var beforeCheck = data.beforeCheck === undefined ? function () {
@@ -1107,8 +1116,16 @@
             }
             $('[role="tree"]').each(function () {
                 var tree = $(this);
-                $.fn.zTree.init(tree, tree.data("setting"));
+                var zTreeObj = $.fn.zTree.init(tree, tree.data("setting"));
+                console.log(zTreeObj);
+                var id = $(this).attr("did");
+                $("#tree_search_btn_" + id).on('click', function () {
+                    console.log(id);
+                    var node = zTreeObj.getNodesByParamFuzzy("name", $("#tree_search_" + id).val());
+                    zTreeObj.selectNode(node[0]);
+                });
             });
+
         },
         _initKindEditor: function () {
             var that = this;

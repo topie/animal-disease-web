@@ -168,7 +168,7 @@
                                     type: 'text',
                                     name: 'newTitle',
                                     id: 'newTitle',
-                                    label: '机构名称',
+                                    label: '标题',
                                     cls: 'input-large',
                                     rule: {
                                         required: true
@@ -283,7 +283,7 @@
                                     type: 'text',
                                     name: 'newTitle',
                                     id: 'newTitle',
-                                    label: '机构名称',
+                                    label: '标题',
                                     cls: 'input-large',
                                     rule: {
                                         required: true
