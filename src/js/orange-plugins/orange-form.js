@@ -1009,7 +1009,7 @@
                 var ele = $.tmpl(treeTmp, {
                     "id_": (data.id === undefined ? data.name : data.id),
                     "name_": data.name,
-                    "hideSearch_": data.hideSearch !== undefined && !data.hideSearch ? 'hide' : ''
+                    "hideSearch_": data.hideSearch != undefined && !data.hideSearch ? '' : 'hide'
                 });
                 var chkboxType = data.chkboxType === undefined ? {"Y": "p", "N": "p"} : data.chkboxType;
                 var beforeCheck = data.beforeCheck === undefined ? function () {

@@ -148,6 +148,7 @@
                                     expandAll: true,
                                     autoParam: ["id", "name", "pId"],
                                     chkStyle: "radio",
+                                    hideSearch: false,
                                     rule: {
                                         required: true
                                     },
