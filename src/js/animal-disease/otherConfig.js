@@ -227,9 +227,6 @@
                                         }, {
                                             text: "季度",
                                             value: 1
-                                        }, {
-                                            text: "半年",
-                                            value: 2
                                         }
                                     ],
                                     rule: {
@@ -287,15 +284,12 @@
                             }, {
                                 text: "季度",
                                 value: 1
-                            }, {
-                                text: "半年",
-                                value: 2
                             }
                         ]
                     }
                 ]
             }
-        }
+        };
         grid = window.App.content.find("#other_config_grid").orangeGrid(options)
     }
-})(jQuery, window, document)
+})(jQuery, window, document);
