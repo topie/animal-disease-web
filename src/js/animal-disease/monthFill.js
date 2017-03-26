@@ -145,8 +145,13 @@
                                     handle: function () {
                                         var jsonData = {}
                                         modal.$body.find("td[role=data]").each(function () {
-                                            var n = $(this).attr("n")
-                                            jsonData[n] = $.trim($(this).text()) == '' ? 0 : parseFloat($(this).text())
+                                            var n = $(this).attr("n");
+                                            var v = $.trim($(this).text()) == '' ? 0 : parseFloat($(this).text());
+                                            if (v < 0) {
+                                                alert(n + "填报数字不能小于0!");
+                                                return false;
+                                            }
+                                            jsonData[n] = v;
                                         })
                                         $.ajax({
                                             type: "POST",
@@ -181,8 +186,13 @@
                                             if (result) {
                                                 var jsonData = {}
                                                 modal.$body.find("td[role=data]").each(function () {
-                                                    var n = $(this).attr("n")
-                                                    jsonData[n] = $.trim($(this).text()) == '' ? 0 : parseFloat($(this).text())
+                                                    var n = $(this).attr("n");
+                                                    var v = $.trim($(this).text()) == '' ? 0 : parseFloat($(this).text());
+                                                    if (v < 0) {
+                                                        alert(n + "填报数字不能小于0!");
+                                                        return false;
+                                                    }
+                                                    jsonData[n] = v;
                                                 })
                                                 $.ajax({
                                                     type: "POST",
