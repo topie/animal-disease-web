@@ -363,15 +363,23 @@
                                         text: '暂存',
                                         cls: "btn-info",
                                         handle: function () {
+                                            var flag = true;
                                             var jsonData = {}
                                             modal.$body.find("td[role=data]").each(function () {
                                                 var n = $(this).attr("n");
-                                                var v = $.trim($(this).text()) == '' ? 0 : parseFloat($(this).text());
-                                                if (v < 0) {
-                                                    alert(n + "填报数字不能小于0!");
-                                                    return false;
+                                                var v = $.trim($(this).text());
+                                                v = v == '' ? 0 : v
+                                                var re = /^[0-9]+(.[0-9]{2})?$/
+                                                if (re.test(v)) {
+                                                    v = parseFloat(v)
+                                                } else {
+                                                    alert(n + "填报必须为数且字不能小于0!");
+                                                    flag = false;
                                                 }
-                                            })
+                                                jsonData[n] = v;
+                                            });
+                                            if (!flag)
+                                                return;
                                             $.ajax({
                                                 type: "POST",
                                                 beforeSend: function (request) {
@@ -403,15 +411,23 @@
                                         handle: function () {
                                             bootbox.confirm("确定该操作?", function (result) {
                                                 if (result) {
+                                                    var flag = true;
                                                     var jsonData = {}
                                                     modal.$body.find("td[role=data]").each(function () {
                                                         var n = $(this).attr("n");
-                                                        var v = $.trim($(this).text()) == '' ? 0 : parseFloat($(this).text());
-                                                        if (v < 0) {
-                                                            alert(n + "填报数字不能小于0!");
-                                                            return false;
+                                                        var v = $.trim($(this).text());
+                                                        v = v == '' ? 0 : v
+                                                        var re = /^[0-9]+(.[0-9]{2})?$/
+                                                        if (re.test(v)) {
+                                                            v = parseFloat(v)
+                                                        } else {
+                                                            alert(n + "填报必须为数且字不能小于0!");
+                                                            flag = false;
                                                         }
-                                                    })
+                                                        jsonData[n] = v;
+                                                    });
+                                                    if (!flag)
+                                                        return;
                                                     $.ajax({
                                                         type: "POST",
                                                         beforeSend: function (request) {
