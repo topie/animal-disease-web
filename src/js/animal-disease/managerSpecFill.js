@@ -342,6 +342,7 @@
                                     onSuccess: function (data) {
                                         $("#xlsPath").attr("value", data.attachmentPath);
                                     },
+                                    alowType : "doc,docx",
                                     deleteHandle: function () {
                                         $("#xlsPath").attr("value", "");
                                     },

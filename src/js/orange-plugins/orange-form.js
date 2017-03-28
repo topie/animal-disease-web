@@ -776,10 +776,16 @@
                     }
                 }
                 if (data.isAjaxUpload) {
-
                     var uploadFile = function () {
                         if ($("#file_" + data.id).val() == "") {
                             return;
+                        } else {
+                            var file = ele.find("[role='file']").val();
+                            var type = file.substring(file.lastIndexOf(".") + 1);
+                            if (data.alowType != undefined && data.alowType.indexOf(type) == -1) {
+                                alert("必须是" + data.alowType + "格式");
+                                return;
+                            }
                         }
                         $
                             .ajaxFileUpload({
@@ -1013,7 +1019,7 @@
                 });
                 var chkboxType = data.chkboxType === undefined ? {"Y": "p", "N": "p"} : data.chkboxType;
                 var beforeCheck = data.beforeCheck === undefined ? function () {
-                    } : data.beforeCheck;
+                } : data.beforeCheck;
                 var setting = {
                     check: {
                         enable: (data.checkable === undefined ? true : data.checkable),
@@ -1417,6 +1423,11 @@
             if (result == false) {
                 return;
             }
+            $('#' + that._formId).find("input[type=text]").each(
+                function (i, d) {
+                    $(this).val($(this).val().replace(/[<>"']/g, ''));
+                }
+            );
             if (this._ajaxSubmit) {
                 $.ajax({
                     type: that._method,
