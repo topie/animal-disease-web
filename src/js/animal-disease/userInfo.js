@@ -331,7 +331,7 @@
                                         required: true,
                                         remote: {
                                             type: "post",
-                                            url: App.href + "/api/noneAuth/unique",
+                                            url: App.href + "/api/sys/user/unique",
                                             data: {
                                                 loginName: function () {
                                                     return $("#loginName").val();
