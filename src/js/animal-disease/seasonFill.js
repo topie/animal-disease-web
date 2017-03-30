@@ -149,7 +149,7 @@
                                             var n = $(this).attr("n");
                                             var v = $.trim($(this).text());
                                             v = v == '' ? 0 : v
-                                            var re = /^[0-9]+(.[0-9]{2})?$/
+                                            var re = /^[0-9]+(.[0-9]{1,2})?$/
                                             if (re.test(v)) {
                                                 v = parseFloat(v)
                                             } else {
@@ -197,7 +197,7 @@
                                                     var n = $(this).attr("n");
                                                     var v = $.trim($(this).text());
                                                     v = v == '' ? 0 : v
-                                                    var re = /^[0-9]+(.[0-9]{2})?$/
+                                                    var re = /^[0-9]+(.[0-9]{1,2})?$/
                                                     if (re.test(v)) {
                                                         v = parseFloat(v)
                                                     } else {
