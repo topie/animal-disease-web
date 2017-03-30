@@ -3,15 +3,14 @@
  */
 
 (function ($, window, document, undefined) {
-    var vkey = "bi_" + new Date().getTime();
-
+    var vkey = "animal_" + new Date().getTime() + "_" + Math.floor(Math.random() * 10);
     function initLogin() {
         $("#captcha_img").attr("src", App.href + "/api/noneAuth/captcha?vkey=" + vkey);
         $("#captcha_a").on("click", function () {
-            vkey = "bi_" + new Date().getTime();
-            $("#captcha_img").attr("src", App.href + "/api/noneAuth/captcha?vkey=" + vkey);
+            vkey = "animal_" + new Date().getTime() + "_" + Math.floor(Math.random() * 10);
+            $("#captcha_img").attr("src", App.href + "/api/noneAuth/captcha?vkey=" + vkey + "&s=" + new Date().getTime());
         });
-        $('#username,#password').bind('keypress', function (event) {
+        $('#username,#password,#vcode').bind('keypress', function (event) {
             if (event.keyCode == "13") {
                 login();
             }
