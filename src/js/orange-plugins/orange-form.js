@@ -166,7 +166,7 @@
             });
             this.$element.prepend(alertDiv);
             alertDiv.delay(seconds * 1000).fadeOut();
-            App.scrollTo(alertDiv, -200);
+            bootbox.alert(alertText);
         },
         _setVariable: function (element, options) {
             this.$element = $(element);
@@ -1123,7 +1123,6 @@
             $('[role="tree"]').each(function () {
                 var tree = $(this);
                 var zTreeObj = $.fn.zTree.init(tree, tree.data("setting"));
-                console.log(zTreeObj);
                 var id = $(this).attr("did");
                 $("#tree_search_btn_" + id).on('click', function () {
                     console.log(id);

@@ -340,9 +340,9 @@
                                     label: '上传附件',
                                     isAjaxUpload: true,
                                     onSuccess: function (data) {
-                                        $("#xlsPath").attr("value", data.attachmentPath);
+                                        $("#xlsPath").attr("value", data.attachmentId);
                                     },
-                                    alowType : "xls",
+                                    alowType: "xls",
                                     deleteHandle: function () {
                                         $("#xlsPath").attr("value", "");
                                     },

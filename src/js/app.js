@@ -88,7 +88,6 @@
             }
             pos = pos + (offeset ? offeset : -1 * el.height());
         }
-
         $('html,body').animate({
             scrollTop: pos
         }, 'slow');
