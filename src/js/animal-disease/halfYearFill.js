@@ -127,9 +127,6 @@
                     }
                 }, {
                     text: "填写",
-                    visible: function (i, d) {
-                        return d.reportStatus <= 0
-                    },
                     cls: "btn-primary btn-sm",
                     handle: function (index, data) {
                         var modal = $.orangeModal({
