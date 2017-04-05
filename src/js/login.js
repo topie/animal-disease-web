@@ -4,6 +4,7 @@
 
 (function ($, window, document, undefined) {
     var vkey = "animal_" + new Date().getTime() + "_" + Math.floor(Math.random() * 10);
+
     function initLogin() {
         $("#captcha_img").attr("src", App.href + "/api/noneAuth/captcha?vkey=" + vkey);
         $("#captcha_a").on("click", function () {
@@ -21,6 +22,7 @@
     var login = function () {
         if ($("#username").val() == "" || $("#username").val() == "" || $("#vcode").val() == "") {
             alert("登录名,密码,验证码不能为空!")
+            $("#captcha_a").trigger("click");
             return;
         }
         var fields = JSON.stringify(
@@ -42,10 +44,8 @@
                     window.location.href = App.href;
                 } else {
                     alert(result.message);
+                    $("#captcha_a").trigger("click");
                 }
-            },
-            error: function (err) {
-
             }
         });
     };

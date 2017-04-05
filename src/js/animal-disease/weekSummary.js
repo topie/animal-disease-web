@@ -208,8 +208,8 @@
                                 dataType: "json",
                                 url: App.href + "/api/animal/report/week/options",
                                 data: {
-                                    "year": $("#wYear").val(),
-                                    "type": $("#wType").val()
+                                    "year": year,
+                                    "type": type
                                 },
                                 success: function (data) {
                                     ele3.empty();
