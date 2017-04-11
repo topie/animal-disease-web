@@ -109,7 +109,7 @@
                 }
             ],
             search: {
-                rowEleNum: 3,
+                rowEleNum: 2,
                 //搜索栏元素
                 items: [
                     {
@@ -124,6 +124,19 @@
                             }
                         ],
                         itemsUrl: App.href + "/api/animal/template/options?reportType=4&animal_disease_token=" + App.token
+                    },
+                    {
+                        type: "select",
+                        id: "orgId",
+                        label: "组织机构",
+                        name: "orgId",
+                        items: [
+                            {
+                                text: "全部",
+                                value: ""
+                            }
+                        ],
+                        itemsUrl: App.href + "/api/animal/orgInfo/options?animal_disease_token=" + App.token
                     }, {
                         type: "select",
                         id: "status",

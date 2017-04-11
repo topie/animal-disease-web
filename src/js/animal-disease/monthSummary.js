@@ -68,7 +68,7 @@
                                     cls: "btn-info",
                                     handle: function () {
                                         App.download("/api/animal/excel/downloadSummary?templateId="
-                                            + data.templateId+"&beginTime="+data.beginTime)
+                                            + data.templateId + "&beginTime=" + data.beginTime)
                                     }
                                 }, {
                                     type: 'button',
