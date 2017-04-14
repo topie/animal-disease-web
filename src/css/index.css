@@ -1,7 +1,7 @@
 /*alteracoes da barra de navegacao principal*/
 .ldhd-bg {
     background: url("../cdn/img/logo.png");
-    padding: 28px 0;
+    /*padding: 28px 0;*/
     height: 95px;
     width: 100%;
     background-size: cover;
