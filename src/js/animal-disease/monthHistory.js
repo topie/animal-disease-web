@@ -124,19 +124,6 @@
                             }
                         ],
                         itemsUrl: App.href + "/api/animal/template/options?reportType=3&animal_disease_token=" + App.token
-                    },
-                    {
-                        type: "select",
-                        id: "orgId",
-                        label: "组织机构",
-                        name: "orgId",
-                        items: [
-                            {
-                                text: "全部",
-                                value: ""
-                            }
-                        ],
-                        itemsUrl: App.href + "/api/animal/orgInfo/options?animal_disease_token=" + App.token
                     }, {
                         type: "select",
                         id: "status",
