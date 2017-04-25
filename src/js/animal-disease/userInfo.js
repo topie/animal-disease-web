@@ -37,6 +37,9 @@
                     title: "登录名",
                     field: "loginName"
                 }, {
+                    title: "原系统角色",
+                    field: "roleName"
+                }, {
                     title: "真实姓名",
                     field: "realName"
                 }, {
@@ -283,7 +286,7 @@
                                     }
                                 })
                             }
-                        })
+                        });
                     }
                 }],
             tools: [
@@ -447,6 +450,34 @@
                         };
                         var form = modal.$body.orangeForm(formOpts)
                         modal.show()
+                    }
+                },
+                {
+                    text: " 绑定全部用户",//按钮文本
+                    cls: "btn btn-primary",//按钮样式
+                    icon: "fa fa-cubes",
+                    handle: function (grid) {
+                        bootbox.confirm("确定该操作?", function (result) {
+                            if (result) {
+                                var requestUrl = App.href + "/api/animal/userInfo/bindAllUser";
+                                $.ajax({
+                                    type: "GET",
+                                    dataType: "json",
+                                    url: requestUrl,
+                                    success: function (data) {
+                                        if (data.code === 200) {
+                                            bootbox.alert("同步成功！");
+                                            grid.reload()
+                                        } else {
+                                            alert(data.message)
+                                        }
+                                    },
+                                    error: function (e) {
+                                        alert("请求异常。")
+                                    }
+                                })
+                            }
+                        });
                     }
                 }
             ],
