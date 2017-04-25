@@ -21,13 +21,12 @@
             var content = $(
                 '<div class="panel panel-default">' +
                 '<div class="panel-heading">' +
-                '<i class="fa fa-bar-chart-o fa-fw"></i>通知公告' +
+                '通知公告' +
                 '</div>' +
                 '<div class="panel-body" id="news_grid"></div>' +
                 '</div>'+
                 '</div>'
             );
-
             App.content.append(content);
             initEvents();
         }
@@ -36,7 +35,7 @@
      * 初始化事件
      */
     var initEvents = function () {
-        var grid = {}
+        var grid = {};
         var options = {
             url: App.href + "/api/animal/news/indexList",
             beforeSend: function (request) {
@@ -63,11 +62,9 @@
                     title: '发布时间',
                     field: 'newDate'
                 }
-            ],
-            actionColumnText: "操作",//操作列文本
-            actionColumnWidth: "20%"
+            ]
         };
-        grid = window.App.content.find("#news_grid").orangeGrid(options)
+        grid = window.App.content.find("#news_grid").orangeGrid(options);
     };
 
     App.index.viewNews = function (newId, newTitle) {
@@ -87,7 +84,7 @@
                     }
                 }
             ]
-        }).show()
+        }).show();
         var formOpts = {
             id: "news_form",
             name: "news_form",
@@ -138,16 +135,16 @@
                 }
             ]
         };
-        var form = modal.$body.orangeForm(formOpts)
+        var form = modal.$body.orangeForm(formOpts);
         form.loadRemote(App.href + "/api/animal/news/view/" + newId)
-    }
+    };
 
     App.index.editProfile = function () {
         var modal = $.orangeModal({
             id: "user_info_edit_modal",
             title: "编辑",
             destroy: true
-        })
+        });
         var formOpts = {
             id: "user_info_form",//表单id
             name: "user_info_form",//表单名
@@ -273,7 +270,7 @@
             ]
         };
         var form = modal.$body.orangeForm(formOpts)
-        form.loadRemote(App.href + "/api/animal/userInfo/loadCurrent/")
+        form.loadRemote(App.href + "/api/animal/userInfo/loadCurrent/");
         modal.show()
     }
 
