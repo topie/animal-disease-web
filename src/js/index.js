@@ -18,13 +18,11 @@
         page: function (title) {
             App.content.empty();
             App.title(title);
-            var content = $(
-                '<div class="panel panel-default">' +
+            var content = $('<div class="panel panel-default">' +
                 '<div class="panel-heading">' +
-                '通知公告' +
+                '<i class="fa fa-bar-chart-o fa-fw"></i>通知公告' +
                 '</div>' +
                 '<div class="panel-body" id="news_grid"></div>' +
-                '</div>'+
                 '</div>'
             );
             App.content.append(content);

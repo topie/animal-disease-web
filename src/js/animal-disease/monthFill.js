@@ -11,20 +11,17 @@
         page: function (title) {
             App.content.empty()
             App.title(title)
-            var content = $(
-                '<div class="panel panel-default">' +
+            var content = $('<div class="panel panel-default">' +
                 '<div class="panel-heading">' +
                 '<i class="fa fa-bar-chart-o fa-fw"></i>填报' +
                 '</div>' +
                 '<div class="panel-body" id="fill_grid"></div>' +
-                '</div>' +
                 '</div>' +
                 '<div class="panel panel-default">' +
                 '<div class="panel-heading">' +
                 '<i class="fa fa-bar-chart-o fa-fw"></i>补报' +
                 '</div>' +
                 '<div class="panel-body" id="re_fill_grid"></div>' +
-                '</div>' +
                 '</div>'
             )
             App.content.append(content)
