@@ -34,6 +34,9 @@
             pageSelect: [2, 15, 30, 50],
             columns: [
                 {
+                    title: "用户id",
+                    field: "userId"
+                },{
                     title: "登录名",
                     field: "loginName"
                 }, {

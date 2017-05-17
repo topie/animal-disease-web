@@ -3,6 +3,7 @@
  */
 
 (function ($, window, document, undefined) {
+
     var vkey = "animal_" + new Date().getTime() + "_" + Math.floor(Math.random() * 10);
 
     function initLogin() {

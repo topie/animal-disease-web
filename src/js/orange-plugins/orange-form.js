@@ -139,11 +139,11 @@
                             callback();
                         }
                     } else {
-                        alert(data.message);
+                        that.alert(data.message);
                     }
                 },
                 error: function (e) {
-                    alert("异步加载数据异常");
+                    that.alert("异步加载数据异常");
                 }
             });
         },
