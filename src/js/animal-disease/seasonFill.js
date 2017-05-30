@@ -144,20 +144,42 @@
                                         var flag = true;
                                         var jsonData = {}
                                         modal.$body.find("td[role=data]").each(function () {
-                                            var n = $(this).attr("n");
                                             var v = $.trim($(this).text());
-                                            v = v == '' ? 0 : v
-                                            var re = /^[0-9]+(.[0-9]{1,2})?$/
+                                            v = v === '' ? 0 : v;
+                                            var re = /^[0-9]+(.[0-9]{1,2})?$/;
+                                            var re2 = /^[0-9]+.[0-9]+$/;
+                                            if (flagType >= 0)
+                                                return;
                                             if (re.test(v)) {
                                                 v = parseFloat(v)
                                             } else {
-                                                alert(n + "填报必须为数且字不能小于0!");
+                                                if (isNaN(v)) {
+                                                    flagType = 0;
+                                                } else if (v < 0) {
+                                                    flagType = 1;
+                                                } else if (re2.test(v)) {
+                                                    flagType = 2;
+                                                }
                                                 flag = false;
                                             }
                                             jsonData[n] = v;
                                         });
-                                        if (!flag)
+                                        if (!flag) {
+                                            switch (flagType) {
+                                                case 0:
+                                                    alert("请填写正确的数字");
+                                                    break;
+                                                case 1:
+                                                    alert("填写数字必须为整数");
+                                                    break;
+                                                case 2:
+                                                    alert("填写数字请保留两位小数");
+                                                    break;
+                                                default:
+                                                    alert("请填写正确的数字");
+                                            }
                                             return;
+                                        }
                                         $.ajax({
                                             type: "POST",
                                             beforeSend: function (request) {
@@ -190,22 +212,45 @@
                                         bootbox.confirm("确定该操作?", function (result) {
                                             if (result) {
                                                 var flag = true;
+                                                var flagType = -1;
                                                 var jsonData = {}
                                                 modal.$body.find("td[role=data]").each(function () {
-                                                    var n = $(this).attr("n");
                                                     var v = $.trim($(this).text());
-                                                    v = v == '' ? 0 : v
-                                                    var re = /^[0-9]+(.[0-9]{1,2})?$/
+                                                    v = v === '' ? 0 : v;
+                                                    var re = /^[0-9]+(.[0-9]{1,2})?$/;
+                                                    var re2 = /^[0-9]+.[0-9]+$/;
+                                                    if (flagType >= 0)
+                                                        return;
                                                     if (re.test(v)) {
                                                         v = parseFloat(v)
                                                     } else {
-                                                        alert(n + "填报必须为数且字不能小于0!");
+                                                        if (isNaN(v)) {
+                                                            flagType = 0;
+                                                        } else if (v < 0) {
+                                                            flagType = 1;
+                                                        } else if (re2.test(v)) {
+                                                            flagType = 2;
+                                                        }
                                                         flag = false;
                                                     }
                                                     jsonData[n] = v;
                                                 });
-                                                if (!flag)
+                                                if (!flag) {
+                                                    switch (flagType) {
+                                                        case 0:
+                                                            alert("请填写正确的数字");
+                                                            break;
+                                                        case 1:
+                                                            alert("填写数字必须为整数");
+                                                            break;
+                                                        case 2:
+                                                            alert("填写数字请保留两位小数");
+                                                            break;
+                                                        default:
+                                                            alert("请填写正确的数字");
+                                                    }
                                                     return;
+                                                }
                                                 $.ajax({
                                                     type: "POST",
                                                     beforeSend: function (request) {
@@ -386,22 +431,45 @@
                                         cls: "btn-info",
                                         handle: function () {
                                             var flag = true;
+                                            var flagType = -1;
                                             var jsonData = {}
                                             modal.$body.find("td[role=data]").each(function () {
-                                                var n = $(this).attr("n");
                                                 var v = $.trim($(this).text());
-                                                v = v == '' ? 0 : v
-                                                var re = /^[0-9]+(.[0-9]{1,2})?$/
+                                                v = v === '' ? 0 : v;
+                                                var re = /^[0-9]+(.[0-9]{1,2})?$/;
+                                                var re2 = /^[0-9]+.[0-9]+$/;
+                                                if (flagType >= 0)
+                                                    return;
                                                 if (re.test(v)) {
                                                     v = parseFloat(v)
                                                 } else {
-                                                    alert(n + "填报必须为数且字不能小于0!");
+                                                    if (isNaN(v)) {
+                                                        flagType = 0;
+                                                    } else if (v < 0) {
+                                                        flagType = 1;
+                                                    } else if (re2.test(v)) {
+                                                        flagType = 2;
+                                                    }
                                                     flag = false;
                                                 }
                                                 jsonData[n] = v;
                                             });
-                                            if (!flag)
+                                            if (!flag) {
+                                                switch (flagType) {
+                                                    case 0:
+                                                        alert("请填写正确的数字");
+                                                        break;
+                                                    case 1:
+                                                        alert("填写数字必须为整数");
+                                                        break;
+                                                    case 2:
+                                                        alert("填写数字请保留两位小数");
+                                                        break;
+                                                    default:
+                                                        alert("请填写正确的数字");
+                                                }
                                                 return;
+                                            }
                                             $.ajax({
                                                 type: "POST",
                                                 beforeSend: function (request) {
@@ -434,22 +502,45 @@
                                             bootbox.confirm("确定该操作?", function (result) {
                                                 if (result) {
                                                     var flag = true;
+                                                    var flagType = -1;
                                                     var jsonData = {}
                                                     modal.$body.find("td[role=data]").each(function () {
-                                                        var n = $(this).attr("n");
                                                         var v = $.trim($(this).text());
-                                                        v = v == '' ? 0 : v
-                                                        var re = /^[0-9]+(.[0-9]{1,2})?$/
+                                                        v = v === '' ? 0 : v;
+                                                        var re = /^[0-9]+(.[0-9]{1,2})?$/;
+                                                        var re2 = /^[0-9]+.[0-9]+$/;
+                                                        if (flagType >= 0)
+                                                            return;
                                                         if (re.test(v)) {
                                                             v = parseFloat(v)
                                                         } else {
-                                                            alert(n + "填报必须为数且字不能小于0!");
+                                                            if (isNaN(v)) {
+                                                                flagType = 0;
+                                                            } else if (v < 0) {
+                                                                flagType = 1;
+                                                            } else if (re2.test(v)) {
+                                                                flagType = 2;
+                                                            }
                                                             flag = false;
                                                         }
                                                         jsonData[n] = v;
                                                     });
-                                                    if (!flag)
+                                                    if (!flag) {
+                                                        switch (flagType) {
+                                                            case 0:
+                                                                alert("请填写正确的数字");
+                                                                break;
+                                                            case 1:
+                                                                alert("填写数字必须为整数");
+                                                                break;
+                                                            case 2:
+                                                                alert("填写数字请保留两位小数");
+                                                                break;
+                                                            default:
+                                                                alert("请填写正确的数字");
+                                                        }
                                                         return;
+                                                    }
                                                     $.ajax({
                                                         type: "POST",
                                                         beforeSend: function (request) {
