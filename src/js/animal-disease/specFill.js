@@ -123,6 +123,7 @@
                                 if (data.code === 200) {
                                     modal.show()
                                     modal.content(data.data.tableContent);
+                                    modal.$body.find("table.t1").css("width","100%");
                                 } else {
                                     alert(data.message)
                                     modal.hide()

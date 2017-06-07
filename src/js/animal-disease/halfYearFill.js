@@ -89,7 +89,12 @@
                                         var flag = true;
                                         var flagType = -1;
                                         var jsonData = {}
+                                        modal.$body.find("td[role=note]").each(function () {
+                                            var n = $(this).attr("n");
+                                            jsonData[n] = $.trim($(this).text());
+                                        });
                                         modal.$body.find("td[role=data]").each(function () {
+                                            var n = $(this).attr("n");
                                             var v = $.trim($(this).text());
                                             v = v === '' ? 0 : v;
                                             var re = /^[0-9]+(.[0-9]{1,2})?$/;
@@ -160,7 +165,12 @@
                                                 var flag = true;
                                                 var flagType = -1;
                                                 var jsonData = {}
+                                                modal.$body.find("td[role=note]").each(function () {
+                                                    var n = $(this).attr("n");
+                                                    jsonData[n] = $.trim($(this).text());
+                                                });
                                                 modal.$body.find("td[role=data]").each(function () {
+                                                    var n = $(this).attr("n");
                                                     var v = $.trim($(this).text());
                                                     v = v === '' ? 0 : v;
                                                     var re = /^[0-9]+(.[0-9]{1,2})?$/;
@@ -379,7 +389,12 @@
                                             var flag = true;
                                             var flagType = -1;
                                             var jsonData = {}
+                                            modal.$body.find("td[role=note]").each(function () {
+                                                var n = $(this).attr("n");
+                                                jsonData[n] = $.trim($(this).text());
+                                            });
                                             modal.$body.find("td[role=data]").each(function () {
+                                                var n = $(this).attr("n");
                                                 var v = $.trim($(this).text());
                                                 v = v === '' ? 0 : v;
                                                 var re = /^[0-9]+(.[0-9]{1,2})?$/;
@@ -450,7 +465,12 @@
                                                     var flag = true;
                                                     var flagType = -1;
                                                     var jsonData = {}
+                                                    modal.$body.find("td[role=note]").each(function () {
+                                                        var n = $(this).attr("n");
+                                                        jsonData[n] = $.trim($(this).text());
+                                                    });
                                                     modal.$body.find("td[role=data]").each(function () {
+                                                        var n = $(this).attr("n");
                                                         var v = $.trim($(this).text());
                                                         v = v === '' ? 0 : v;
                                                         var re = /^[0-9]+(.[0-9]{1,2})?$/;
