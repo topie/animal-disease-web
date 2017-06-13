@@ -131,6 +131,10 @@
                                             }
                                             return;
                                         }
+                                        if (modal.$body.find("#valid").val()=="false") {
+                                            alert(modal.$body.find("#valid-msg").val());
+                                            return;
+                                        }
                                         $.ajax({
                                             type: "POST",
                                             beforeSend: function (request) {
@@ -205,6 +209,10 @@
                                                         default:
                                                             alert("请填写正确的数字");
                                                     }
+                                                    return;
+                                                }
+                                                if (modal.$body.find("#valid").val()=="false") {
+                                                    alert(modal.$body.find("#valid-msg").val());
                                                     return;
                                                 }
                                                 $.ajax({
@@ -431,6 +439,10 @@
                                                 }
                                                 return;
                                             }
+                                            if (modal.$body.find("#valid").val()=="false") {
+                                                alert(modal.$body.find("#valid-msg").val());
+                                                return;
+                                            }
                                             $.ajax({
                                                 type: "POST",
                                                 beforeSend: function (request) {
@@ -505,6 +517,10 @@
                                                             default:
                                                                 alert("请填写正确的数字");
                                                         }
+                                                        return;
+                                                    }
+                                                    if (modal.$body.find("#valid").val()=="false") {
+                                                        alert(modal.$body.find("#valid-msg").val());
                                                         return;
                                                     }
                                                     $.ajax({
