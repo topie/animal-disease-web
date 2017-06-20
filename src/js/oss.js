@@ -38,16 +38,10 @@
                                 id: "index_form",//表单id
                                 name: "index_form",//表单名
                                 method: "POST",//表单method
-                                action: App.href + "/api/sys/user/update",//表单action
+                                action: App.href + "/api/sys/user/grand",//表单action
                                 ajaxSubmit: true,//是否使用ajax提交表单
-                                beforeSubmit: function () {
-                                },
-                                beforeSend: function (request) {
-                                    request.setRequestHeader("X-Auth-Token", App.token);
-                                },
                                 ajaxSuccess: function () {
-                                    modal.hide();
-                                    grid.reload();
+                                    alert("成功！");
                                 },
                                 submitText: "保存",//保存按钮的文本
                                 showReset: true,//是否显示重置按钮
