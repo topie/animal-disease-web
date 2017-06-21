@@ -141,13 +141,13 @@
                             items: [
                                 {
                                     type: 'tree',
-                                    name: 'orgId',
-                                    id: 'orgId',
+                                    name: 'orgIds',
+                                    id: 'orgIds',
                                     label: '组织机构',
                                     url: App.href + "/api/animal/orgInfo/treeNodes?animal_disease_token=" + App.token,
                                     expandAll: true,
                                     autoParam: ["id", "name", "pId"],
-                                    chkStyle: "radio",
+                                    chkStyle: "checkbox",
                                     hideSearch: false,
                                     rule: {
                                         required: true
