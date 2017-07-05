@@ -142,6 +142,7 @@
                                     cls: "btn-info",
                                     handle: function () {
                                         var flag = true;
+                                        var flagType = -1;
                                         var jsonData = {}
                                         modal.$body.find("td[role=note]").each(function () {
                                             var n = $(this).attr("n");
@@ -166,6 +167,8 @@
                                                     flagType = 2;
                                                 }
                                                 flag = false;
+                                                $(this).css("color","red");
+                                                $(this).css("font-weight","bold");
                                             }
                                             jsonData[n] = v;
                                         });
@@ -246,6 +249,8 @@
                                                             flagType = 2;
                                                         }
                                                         flag = false;
+                                                        $(this).css("color","red");
+                                                        $(this).css("font-weight","bold");
                                                     }
                                                     jsonData[n] = v;
                                                 });
