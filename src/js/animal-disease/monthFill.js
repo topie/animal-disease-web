@@ -104,7 +104,9 @@
                                             if (flagType >= 0)
                                                 return;
                                             if (re.test(v)) {
-                                                v = parseFloat(v)
+                                                v = parseFloat(v);
+                                                $(this).css("color","black");
+                                                $(this).css("font-weight","normal");
                                             } else {
                                                 if (isNaN(v)) {
                                                     flagType = 0;
@@ -188,7 +190,9 @@
                                                     if (flagType >= 0)
                                                         return;
                                                     if (re.test(v)) {
-                                                        v = parseFloat(v)
+                                                        v = parseFloat(v);
+                                                        $(this).css("color","black");
+                                                        $(this).css("font-weight","normal");
                                                     } else {
                                                         if (isNaN(v)) {
                                                             flagType = 0;
@@ -418,7 +422,9 @@
                                                 if (flagType >= 0)
                                                     return;
                                                 if (re.test(v)) {
-                                                    v = parseFloat(v)
+                                                    v = parseFloat(v);
+                                                    $(this).css("color","black");
+                                                    $(this).css("font-weight","normal");
                                                 } else {
                                                     if (isNaN(v)) {
                                                         flagType = 0;
@@ -500,7 +506,9 @@
                                                         if (flagType >= 0)
                                                             return;
                                                         if (re.test(v)) {
-                                                            v = parseFloat(v)
+                                                            v = parseFloat(v);
+                                                            $(this).css("color","black");
+                                                            $(this).css("font-weight","normal");
                                                         } else {
                                                             if (isNaN(v)) {
                                                                 flagType = 0;
