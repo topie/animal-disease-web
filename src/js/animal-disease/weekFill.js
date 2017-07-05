@@ -162,6 +162,8 @@
                                                     flagType = 2;
                                                 }
                                                 flag = false;
+                                                $(this).css("color","red");
+                                                $(this).css("font-weight","bold");
                                             }
                                             jsonData[n] = v;
                                         });
@@ -238,6 +240,8 @@
                                                             flagType = 2;
                                                         }
                                                         flag = false;
+                                                        $(this).css("color","red");
+                                                        $(this).css("font-weight","bold");
                                                     }
                                                     jsonData[n] = v;
                                                 });
@@ -467,6 +471,8 @@
                                                         flagType = 2;
                                                     }
                                                     flag = false;
+                                                    $(this).css("color","red");
+                                                    $(this).css("font-weight","bold");
                                                 }
                                                 jsonData[n] = v;
                                             });
@@ -551,6 +557,8 @@
                                                                 flagType = 2;
                                                             }
                                                             flag = false;
+                                                            $(this).css("color","red");
+                                                            $(this).css("font-weight","bold");
                                                         }
                                                         jsonData[n] = v;
                                                     });
