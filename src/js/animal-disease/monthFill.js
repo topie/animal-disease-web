@@ -85,6 +85,13 @@
                             buttons: [
                                 {
                                     type: 'button',
+                                    text: '保存到本地',
+                                    cls: "btn-info",
+                                    handle: function () {
+                                        App.download("/api/animal/excel/download/" + data.reportId)
+                                    }
+                                },{
+                                    type: 'button',
                                     text: '暂存',
                                     cls: "btn-info",
                                     handle: function () {
@@ -402,6 +409,13 @@
                                 destroy: true,
                                 buttons: [
                                     {
+                                        type: 'button',
+                                        text: '保存到本地',
+                                        cls: "btn-info",
+                                        handle: function () {
+                                            App.download("/api/animal/excel/download/" + data.reportId)
+                                        }
+                                    },{
                                         type: 'button',
                                         text: '暂存',
                                         cls: "btn-info",
