@@ -138,6 +138,13 @@
                             buttons: [
                                 {
                                     type: 'button',
+                                    text: '保存到本地',
+                                    cls: "btn-info",
+                                    handle: function () {
+                                        App.download("/api/animal/excel/download/" + data.reportId)
+                                    }
+                                },{
+                                    type: 'button',
                                     text: '暂存',
                                     cls: "btn-info",
                                     handle: function () {
@@ -152,7 +159,9 @@
                                             if (flagType >= 0)
                                                 return;
                                             if (re.test(v)) {
-                                                v = parseFloat(v)
+                                                v = parseFloat(v);
+                                                $(this).css("color","black");
+                                                $(this).css("font-weight","normal");
                                             } else {
                                                 if (isNaN(v)) {
                                                     flagType = 0;
@@ -162,6 +171,8 @@
                                                     flagType = 2;
                                                 }
                                                 flag = false;
+                                                $(this).css("color","red");
+                                                $(this).css("font-weight","bold");
                                             }
                                             jsonData[n] = v;
                                         });
@@ -228,7 +239,9 @@
                                                     if (flagType >= 0)
                                                         return;
                                                     if (re.test(v)) {
-                                                        v = parseFloat(v)
+                                                        v = parseFloat(v);
+                                                        $(this).css("color","black");
+                                                        $(this).css("font-weight","normal");
                                                     } else {
                                                         if (isNaN(v)) {
                                                             flagType = 0;
@@ -238,6 +251,8 @@
                                                             flagType = 2;
                                                         }
                                                         flag = false;
+                                                        $(this).css("color","red");
+                                                        $(this).css("font-weight","bold");
                                                     }
                                                     jsonData[n] = v;
                                                 });
@@ -441,6 +456,13 @@
                                 buttons: [
                                     {
                                         type: 'button',
+                                        text: '保存到本地',
+                                        cls: "btn-info",
+                                        handle: function () {
+                                            App.download("/api/animal/excel/download/" + data.reportId)
+                                        }
+                                    },{
+                                        type: 'button',
                                         text: '暂存',
                                         cls: "btn-info",
                                         handle: function () {
@@ -457,7 +479,9 @@
                                                 if (flagType >= 0)
                                                     return;
                                                 if (re.test(v)) {
-                                                    v = parseFloat(v)
+                                                    v = parseFloat(v);
+                                                    $(this).css("color","black");
+                                                    $(this).css("font-weight","normal");
                                                 } else {
                                                     if (isNaN(v)) {
                                                         flagType = 0;
@@ -467,6 +491,8 @@
                                                         flagType = 2;
                                                     }
                                                     flag = false;
+                                                    $(this).css("color","red");
+                                                    $(this).css("font-weight","bold");
                                                 }
                                                 jsonData[n] = v;
                                             });
@@ -541,7 +567,9 @@
                                                         if (flagType >= 0)
                                                             return;
                                                         if (re.test(v)) {
-                                                            v = parseFloat(v)
+                                                            v = parseFloat(v);
+                                                            $(this).css("color","black");
+                                                            $(this).css("font-weight","normal");
                                                         } else {
                                                             if (isNaN(v)) {
                                                                 flagType = 0;
@@ -551,6 +579,8 @@
                                                                 flagType = 2;
                                                             }
                                                             flag = false;
+                                                            $(this).css("color","red");
+                                                            $(this).css("font-weight","bold");
                                                         }
                                                         jsonData[n] = v;
                                                     });
