@@ -68,9 +68,6 @@
                                         var content = modal.$body.html();
                                         $.ajax({
                                             type: "POST",
-                                            beforeSend: function (request) {
-                                                request.setRequestHeader("X-Auth-Token", App.token)
-                                            },
                                             dataType: "json",
                                             data: {
                                                 "tableContent": content,

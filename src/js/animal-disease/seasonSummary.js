@@ -67,8 +67,8 @@
                                     text: '保存到本地',
                                     cls: "btn-info",
                                     handle: function () {
-                                        App.download("/api/animal/excel/downloadSummary?templateId="
-                                            + data.templateId+"&beginTime="+data.beginTime)
+                                        window.open("/api/animal/excel/downloadSummary?templateId="
+                                            + data.templateId+"&beginTime="+data.beginTime+ "&animal_disease_token=" + App.token)
                                     }
                                 }, {
                                     type: 'button',
