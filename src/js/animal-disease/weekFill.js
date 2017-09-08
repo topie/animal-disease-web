@@ -152,6 +152,7 @@
                                         var flagType = -1;
                                         var jsonData = {}
                                         modal.$body.find("td[role=data]").each(function () {
+                                            var n = $(this).attr("n");
                                             var v = $.trim($(this).text());
                                             v = v === '' ? 0 : v;
                                             var re = /^[0-9]+(.[0-9]{1,2})?$/;
