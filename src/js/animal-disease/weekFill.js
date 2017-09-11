@@ -141,7 +141,7 @@
                                     text: '保存到本地',
                                     cls: "btn-info",
                                     handle: function () {
-                                        App.download("/api/animal/excel/download/" + data.reportId)
+                                        window.open("/api/animal/excel/download/" + data.reportId + "?animal_disease_token=" + App.token)
                                     }
                                 },{
                                     type: 'button',
@@ -460,7 +460,7 @@
                                         text: '保存到本地',
                                         cls: "btn-info",
                                         handle: function () {
-                                            App.download("/api/animal/excel/download/" + data.reportId)
+                                            window.open("/api/animal/excel/download/" + data.reportId + "?animal_disease_token=" + App.token)
                                         }
                                     },{
                                         type: 'button',
