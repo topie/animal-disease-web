@@ -75,6 +75,9 @@
                 {
                     text: "关闭",
                     cls: "btn-danger btn-sm",
+                    visible:function (i,d) {
+                        return d.reIsOpen == 1;
+                    },
                     handle: function (index, data) {
                         bootbox.confirm("确定该操作?", function (result) {
                             if (result) {
@@ -103,7 +106,43 @@
                             }
                         });
                     }
-                }],
+                },
+                {
+                    text: "开放",
+                    visible:function (i,d) {
+                        return d.reIsOpen == 0;
+                    },
+                    cls: "btn-danger btn-sm",
+                    handle: function (index, data) {
+                        bootbox.confirm("确定该操作?", function (result) {
+                            if (result) {
+                                var requestUrl = App.href + "/api/animal/reReport/open";
+                                $.ajax({
+                                    type: "POST",
+                                    beforeSend: function (request) {
+                                        request.setRequestHeader("X-Auth-Token", App.token)
+                                    },
+                                    dataType: "json",
+                                    data: {
+                                        id: data.id
+                                    },
+                                    url: requestUrl,
+                                    success: function (data) {
+                                        if (data.code === 200) {
+                                            grid.reload()
+                                        } else {
+                                            alert(data.message)
+                                        }
+                                    },
+                                    error: function (e) {
+                                        alert("请求异常。")
+                                    }
+                                });
+                            }
+                        });
+                    }
+                }
+                ],
             tools: [
                 {
                     text: " 添 加",//按钮文本
